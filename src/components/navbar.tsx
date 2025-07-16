@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, User, ShoppingCart, ChevronDown, Menu, X } from "lucide-react";
+import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Header() {

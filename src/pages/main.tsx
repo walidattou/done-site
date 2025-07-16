@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import productImage from "../assets/Product_im.webp";
 import blog1 from "../assets/blog1.jpg";
 import blog2 from "../assets/blog2.avif";
@@ -8,6 +9,8 @@ import mark3 from "../assets/mark3.avif";
 import mark4 from "../assets/mark4.avif";
 
 export default function HeroSection() {
+  const navigate = useNavigate();
+
   const blogPosts = [
     {
       id: 1,
@@ -66,7 +69,10 @@ export default function HeroSection() {
               Beach-bar texture or sleek glass hair, all from the same tool. Summer-only savings end at midnight.
             </p>
 
-            <button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200">
+            <button
+              className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+              onClick={() => navigate("/order")}
+            >
               Shop Now
             </button>
           </div>
@@ -113,7 +119,7 @@ export default function HeroSection() {
             <div className="flex justify-center lg:justify-end">
               <div
                 className="bg-white rounded-2xl shadow-xl p-6 max-w-sm w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                onClick={() => (window.location.href = "/order")}
+                onClick={() => navigate("/order")}
               >
                 <div className="aspect-square rounded-xl mb-4 overflow-hidden">
                   <img
@@ -158,7 +164,7 @@ export default function HeroSection() {
               <div
                 key={post.id}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-100"
-                onClick={() => (window.location.href = "/blog")}
+                onClick={() => navigate("/blog")}
               >
                 <div className="aspect-video bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center">
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
@@ -190,7 +196,7 @@ export default function HeroSection() {
           <div className="text-center mt-12">
             <button
               className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-              onClick={() => (window.location.href = "/blog")}
+              onClick={() => navigate("/blog")}
             >
               View All Articles
             </button>
