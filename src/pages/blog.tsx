@@ -1,44 +1,86 @@
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+
 export default function BlogPage() {
+  const { t } = useTranslation();
   return (
-    <div className="min-h-screen bg-white text-gray-800 px-4 py-12 sm:px-6 lg:px-24">
-      <article className="max-w-4xl mx-auto">
+    <motion.div
+      className="min-h-screen bg-white text-gray-800 px-4 py-12 sm:px-6 lg:px-24"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <motion.article
+        className="max-w-4xl mx-auto"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+      >
         {/* Cover Image */}
-        <img
+        <motion.img
           src="https://images.unsplash.com/photo-1522337660859-02fbefca4702"
-          alt="Hair Styling Inspiration"
+          alt={t("blog_cover_alt")}
           className="w-full h-64 object-cover rounded-xl shadow-lg mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
         />
 
         {/* Title */}
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4 leading-tight">
-          Unlock Effortless Style: Why the 5-in-1 PerleBrush Is a Game Changer
-        </h1>
+        <motion.h1
+          className="text-4xl sm:text-5xl font-bold mb-4 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+        >
+          {t("blogpage_title")}
+        </motion.h1>
 
         {/* Author & Date */}
-        <div className="text-sm text-gray-500 mb-8">
-          By <span className="font-medium text-gray-700">Lea Dubois</span> • July 16, 2025
-        </div>
+        <motion.div
+          className="text-sm text-gray-500 mb-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.4, ease: "easeOut" }}
+        >
+          {t("blogpage_by")} <span className="font-medium text-gray-700">Lea Dubois</span> • July 16, 2025
+        </motion.div>
 
         {/* Article Body */}
-        <div className="prose max-w-none prose-p:leading-relaxed prose-h2:mt-10 prose-h2:mb-4">
-          <p>
-            In today’s fast-paced world, we all want to look great without spending hours in front of the mirror.
-            That’s where the PerleBrush Styler 5-in-1 shines. Whether you’re rushing to a meeting or prepping for a
-            night out, this sleek tool gets you ready in minutes.
-          </p>
+        <motion.div
+          className="prose max-w-none prose-p:leading-relaxed prose-h2:mt-10 prose-h2:mb-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
+        >
+          <motion.p
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.2 }}
+          >
+            {t("blogpage_p1")}
+          </motion.p>
 
-          <h2>What Makes It Special?</h2>
-          <p>
-            The PerleBrush combines drying, straightening, curling, volumizing, and scalp massage into one device.
-            It’s gentle on your hair and delivers salon-quality results from the comfort of your home.
-          </p>
+          <motion.h2
+            whileHover={{ color: "#ea580c" }}
+            transition={{ duration: 0.2 }}
+          >
+            {t("blogpage_h2")}
+          </motion.h2>
+          <motion.p
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.2 }}
+          >
+            {t("blogpage_p2")}
+          </motion.p>
 
-          <p>
-            Say goodbye to bulky tools cluttering your vanity — the PerleBrush simplifies your routine without
-            sacrificing performance.
-          </p>
-        </div>
-      </article>
-    </div>
+          <motion.p
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.2 }}
+          >
+            {t("blogpage_p3")}
+          </motion.p>
+        </motion.div>
+      </motion.article>
+    </motion.div>
   );
 }
