@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import productImage from "../assets/Product_im.webp";
 import blog1 from "../assets/blog1.jpg";
 import blog2 from "../assets/blog2.avif";

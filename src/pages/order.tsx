@@ -179,20 +179,12 @@ export default function OrderPage() {
 
           <div className="space-y-3">
             <motion.button
-              className="w-full bg-black hover:bg-gray-800 text-white font-medium py-4 text-lg rounded"
+              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 text-lg rounded"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.15 }}
             >
               <Fire className="w-5 h-5 mr-2 inline-block" /> {t("order_want_now")}
-            </motion.button>
-            <motion.button
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-4 text-lg rounded"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.15 }}
-            >
-              {t("order_buy_shoppay")}
             </motion.button>
           </div>
 
