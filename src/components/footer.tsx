@@ -41,8 +41,16 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Logo */}
-            <div className="lg:col-span-1 text-center lg:text-left">
+            <div className="lg:col-span-1 text-center lg:text-left flex flex-col items-center lg:items-start gap-4">
               <h2 className="text-3xl sm:text-4xl font-light tracking-wide">PerleBrush</h2>
+              <a
+                href="mailto:Tecnodollars@yahoo.com"
+                className="mt-2 inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-orange-700 transition text-sm font-medium border border-orange-700"
+                style={{ wordBreak: 'break-all' }}
+              >
+                <Headphones className="w-5 h-5" />
+                Support: Tecnodollars@yahoo.com
+              </a>
             </div>
 
             {/* Navigation Links */}

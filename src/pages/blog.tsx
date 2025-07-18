@@ -5,7 +5,7 @@ export default function BlogPage() {
   const { t } = useTranslation();
   return (
     <motion.div
-      className="min-h-screen bg-white text-gray-800 px-4 py-12 sm:px-6 lg:px-24"
+      className="min-h-screen bg-white text-gray-800 px-4 py-12 sm:px-6 lg:px-24 pt-24 sm:pt-28"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

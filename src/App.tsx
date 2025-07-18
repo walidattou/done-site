@@ -3,7 +3,10 @@ import Nav from "./components/navbar";
 import Main from "./pages/main";
 import Footer from "./components/footer";
 import Order from "./pages/order";
-import Blog from "./pages/blog"; // ✅ Capitalized import
+import Blog from "./pages/blog"; 
+import ContactForm from "./pages/contact";
+import { Toaster } from "react-hot-toast";
+
 
 function App() {
   return (
@@ -11,10 +14,14 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="/order/:productId" element={<Order />} />
         <Route path="/order" element={<Order />} />
-        <Route path="/blog" element={<Blog />} /> {/* ✅ Blog route added */}
+        <Route path="/blog" element={<Blog />} /> 
+        <Route path="/contact" element={<ContactForm />} />
+
       </Routes>
       <Footer />
+      <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
     </Router>
   );
 }

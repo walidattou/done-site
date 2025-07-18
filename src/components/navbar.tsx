@@ -1,24 +1,40 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function Header() {
+interface HeaderProps {
+  cartCount?: number;
+  onCartClick?: () => void;
+}
+
+export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
   const [langMenuOpen, setLangMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const langMenuRef = useRef<HTMLDivElement>(null);
 
   // Close all overlays on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setSearchOpen(false);
-    setCartOpen(false);
     setLangMenuOpen(false);
   }, [location.pathname]);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    if (!langMenuOpen) return;
+    const handleClick = (e: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
+        setLangMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [langMenuOpen]);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -30,7 +46,6 @@ export default function Header() {
     setMobileMenuOpen((open) => {
       if (!open) {
         setSearchOpen(false);
-        setCartOpen(false);
         setLangMenuOpen(false);
       }
       return !open;
@@ -40,17 +55,6 @@ export default function Header() {
     setSearchOpen((open) => {
       if (!open) {
         setMobileMenuOpen(false);
-        setCartOpen(false);
-        setLangMenuOpen(false);
-      }
-      return !open;
-    });
-  };
-  const openCart = () => {
-    setCartOpen((open) => {
-      if (!open) {
-        setMobileMenuOpen(false);
-        setSearchOpen(false);
         setLangMenuOpen(false);
       }
       return !open;
@@ -61,7 +65,6 @@ export default function Header() {
       if (!open) {
         setMobileMenuOpen(false);
         setSearchOpen(false);
-        setCartOpen(false);
       }
       return !open;
     });
@@ -104,50 +107,78 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           {!searchOpen && (
-            <nav className="hidden md:flex flex-1 items-center justify-center space-x-4 lg:space-x-8">
-              <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">{t("nav_home")}</Link>
-              <Link to="/order" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">{t("nav_styler")}</Link>
-              <Link to="/blog" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">{t("nav_haircare")}</Link>
+            <nav className="hidden md:flex flex-1 items-center justify-center space-x-4">
+              <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_home")}</Link>
+              <Link to="/order" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_styler")}</Link>
+              <Link to="/blog" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_haircare")}</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t('contact_title')}</Link>
             </nav>
           )}
 
           {/* Right Icons */}
-          <div className="flex-1 flex items-center justify-end space-x-1 sm:space-x-2 md:space-x-3">
+          <div className="flex-1 flex items-center justify-end space-x-1 sm:space-x-2 md:space-x-3 h-full">
             {!searchOpen && (
               <>
                 <button
-                  onClick={openSearch}
-                  className="text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  onClick={() => {
+                    openSearch();
+                    setLangMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                   aria-label="Search"
+                  style={{ verticalAlign: 'middle' }}
                 >
-                  <Search className="h-4 w-4 sm:h-5 sm:w-5" />
-                </button>
-                <button className="text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" aria-label="User">
-                  <User className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <Search className="h-5 w-5" />
                 </button>
                 <button
-                  onClick={openCart}
-                  className="text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-                  aria-label="Cart"
+                  onClick={() => {
+                    setLangMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  aria-label="User"
+                  style={{ verticalAlign: 'middle' }}
                 >
-                  <ShoppingCart className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <User className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => {
+                    onCartClick && onCartClick();
+                    setLangMenuOpen(false);
+                  }}
+                  className="flex items-center justify-center text-gray-700 hover:text-gray-900 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  aria-label="Cart"
+                  style={{ verticalAlign: 'middle' }}
+                >
+                  <span className="relative inline-block">
+                    <ShoppingCart className="h-5 w-5" />
+                    {cartCount > 0 && (
+                      <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full px-1.5 py-0.5 min-w-[20px] flex items-center justify-center shadow-lg border-2 border-white">
+                        {cartCount}
+                      </span>
+                    )}
+                  </span>
                 </button>
                 {/* Language Dropdown */}
-                <div className="relative">
+                <div className="relative flex items-center" ref={langMenuRef}>
                   <button
-                    onClick={openLangMenu}
-                    className="text-gray-700 hover:text-gray-900 p-2 sm:p-2 flex items-center border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    onClick={() => {
+                      openLangMenu();
+                      setSearchOpen(false);
+                      // setCartOpen(false); // This state was removed, so this line is removed.
+                    }}
+                    className="flex items-center justify-center text-gray-700 hover:text-gray-900 p-2 sm:p-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
                     aria-label="Language"
+                    style={{ verticalAlign: 'middle' }}
                   >
                     <span className="mr-1 hidden sm:inline">{t("language")}</span>
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
                   <AnimatePresence>
                     {langMenuOpen && (
                       <motion.div
-                        className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                        className="absolute left-0 top-full mt-2 min-w-[120px] bg-white border border-gray-200 rounded-lg shadow-lg z-50"
                         initial={{ y: -10, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -10, opacity: 0 }}
@@ -214,33 +245,19 @@ export default function Header() {
               <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_home")}</Link>
               <Link to="/order" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_styler")}</Link>
               <Link to="/blog" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_haircare")}</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t('contact_title')}</Link>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
 
-      {/* Spacer below navbar */}
-      <div className="h-16 sm:h-20" />
+      {/* Spacer below navbar (removed to eliminate white space) */}
+      {/* <div className="h-16 sm:h-20" /> */}
 
       {/* Cart Sidebar */}
       <AnimatePresence>
-        {cartOpen && (
-          <motion.div
-            className="fixed inset-y-0 right-0 w-80 bg-white shadow-lg z-50 p-6"
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 100, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold">{t("cart")}</h2>
-              <button onClick={() => setCartOpen(false)} className="text-gray-600 hover:text-gray-900">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <p className="text-gray-500 text-sm">No items yet. Your cart is empty.</p>
-          </motion.div>
-        )}
+        {/* The cartOpen state and openCart function were removed, so this block is no longer needed. */}
+        {/* If cart functionality is still needed, it should be managed by the parent component. */}
       </AnimatePresence>
     </>
   );
