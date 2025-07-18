@@ -17,12 +17,15 @@ import video1 from '../assets/videos/1sr.mp4';
 import video2 from '../assets/videos/2nd.mp4';
 import video3 from '../assets/videos/3rd.mp4';
 import { AnimatePresence } from 'framer-motion';
+import './order.css';
 
 export default function OrderPage() {
   const { productId } = useParams();
   const { t } = useTranslation();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [videoIdx, setVideoIdx] = useState(0);
+  const videos = [video1, video2, video3];
 
   const product = products.find((p: any) => p.id === productId) || products[0]; // fallback to first product
   if (!product) return <div className="p-8 text-center text-xl">Product not found.</div>;
@@ -102,8 +105,30 @@ export default function OrderPage() {
           {/* --- TikTok Style Video Testimonials (if any) --- */}
           <div className="w-full flex flex-col items-center mt-6">
             <h3 className="text-lg font-semibold text-center mb-2">{t('order_happy_customers', 'Join 20,000+ Happy Customers')}</h3>
-            <div className="flex flex-row gap-4 justify-center items-end w-full">
-              {[video1, video2, video3].map((video: string, idx: number) => (
+            {/* Mobile: 1 video at a time with arrows */}
+            <div className="flex flex-row gap-4 justify-center items-end w-full video-mobile-carousel">
+              <button
+                className="p-2 text-gray-400 hover:text-orange-500 focus:outline-none"
+                onClick={() => setVideoIdx((videoIdx + videos.length - 1) % videos.length)}
+                aria-label="Previous video"
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+              <motion.div key={videoIdx} className="w-full max-w-xs h-[340px] bg-black rounded-2xl shadow-2xl flex flex-col items-center justify-center overflow-hidden relative border-2 border-orange-200 transition-transform duration-200 hover:scale-105 group" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+                <video src={videos[videoIdx]} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>
+              </motion.div>
+              <button
+                className="p-2 text-gray-400 hover:text-orange-500 focus:outline-none"
+                onClick={() => setVideoIdx((videoIdx + 1) % videos.length)}
+                aria-label="Next video"
+              >
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+            {/* Desktop: 3 videos side by side */}
+            <div className="hidden video-desktop-carousel flex-row gap-4 justify-center items-end w-full">
+              {videos.map((video: string, idx: number) => (
                 <motion.div key={idx} className="w-full max-w-xs h-[340px] bg-black rounded-2xl shadow-2xl flex flex-col items-center justify-center overflow-hidden relative border-2 border-orange-200 transition-transform duration-200 hover:scale-105 group" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 * idx, duration: 0.5, ease: 'easeOut' }}>
                   <video src={video} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
                   <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>

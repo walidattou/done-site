@@ -1,0 +1,7 @@
+.video-mobile-carousel { display: flex; }
+.video-desktop-carousel { display: none; }
+
+@media (min-width: 550px) {
+  .video-mobile-carousel { display: none !important; }
+  .video-desktop-carousel { display: flex !important; }
+} 
