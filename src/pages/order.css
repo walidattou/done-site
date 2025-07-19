@@ -4,4 +4,34 @@
 @media (min-width: 550px) {
   .video-mobile-carousel { display: none !important; }
   .video-desktop-carousel { display: flex !important; }
+}
+
+/* Prevent layout shifts during image transitions */
+.product-image-container {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Smooth video transitions */
+.video-carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Prevent flash during image changes */
+.product-thumbnail {
+  transition: all 0.2s ease-in-out;
+  will-change: transform, border-color;
 } 

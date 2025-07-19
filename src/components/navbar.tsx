@@ -109,7 +109,7 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
           {!searchOpen && (
             <nav className="hidden md:flex flex-1 items-center justify-center space-x-4">
               <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_home")}</Link>
-              <Link to="/order" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_styler")}</Link>
+              <Link to="/order/rosemary-elixir" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_styler")}</Link>
               <Link to="/blog" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_haircare")}</Link>
               <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t('contact_title')}</Link>
             </nav>
@@ -243,7 +243,7 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
               transition={{ duration: 0.25 }}
             >
               <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_home")}</Link>
-              <Link to="/order" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_styler")}</Link>
+              <Link to="/order/rosemary-elixir" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_styler")}</Link>
               <Link to="/blog" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_haircare")}</Link>
               <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t('contact_title')}</Link>
             </motion.nav>

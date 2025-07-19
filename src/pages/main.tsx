@@ -121,7 +121,7 @@ export default function HeroSection() {
                       </button>
                       <button
                         className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-3 py-2 rounded transition-colors duration-200 text-xs flex items-center gap-1"
-                        onClick={() => window.open(`/order/${prod!.id}`, '_blank')}
+                        onClick={() => navigate(`/order/${prod!.id}`)}
                       >
                         Checkout
                       </button>
@@ -179,7 +179,7 @@ export default function HeroSection() {
               className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => { window.scrollTo(0, 0); navigate("/order"); }}
+              onClick={() => { window.scrollTo(0, 0); navigate(`/order/${products[0].id}`); }}
             >
               {t("shop_now")}
             </motion.button>
@@ -268,7 +268,7 @@ export default function HeroSection() {
                   whileTap={{ scale: 0.98 }}
                   onClick={e => {
                     e.stopPropagation();
-                    window.open(`/order/${carouselProducts[carouselIdx].id}`, '_blank');
+                    navigate(`/order/${carouselProducts[carouselIdx].id}`);
                   }}
                   initial={{ opacity: 0, scale: 0.95, y: 30 }}
                   animate={{ opacity: 1, scale: 1, y: 0 }}

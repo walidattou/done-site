@@ -43,12 +43,23 @@ export default function OrderPage() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image Section */}
         <motion.div className="space-y-4" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}>
-          <motion.div className="overflow-hidden border-2 border-orange-100 shadow-lg p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}>
-            <motion.img src={product.images[selectedImage]} alt={product.name} className="w-full h-auto rounded-lg" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }} />
+          <motion.div className="overflow-hidden border-2 border-orange-100 shadow-lg p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl product-image-container" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}>
+            <AnimatePresence mode="wait">
+              <motion.img 
+                key={selectedImage}
+                src={product.images[selectedImage]} 
+                alt={product.name} 
+                className="w-full h-auto rounded-lg" 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              />
+            </AnimatePresence>
           </motion.div>
           <div className="flex flex-wrap gap-3 justify-center">
             {product.images.map((image: string, index: number) => (
-              <motion.button key={index} onClick={() => setSelectedImage(index)} className={`w-20 h-20 overflow-hidden border-2 rounded-lg transition-all duration-200 ${selectedImage === index ? "border-orange-500 shadow-md" : "border-gray-200 hover:border-orange-300"}`} whileHover={{ scale: 1.07, borderColor: "#ea580c" }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
+              <motion.button key={index} onClick={() => setSelectedImage(index)} className={`w-20 h-20 overflow-hidden border-2 rounded-lg product-thumbnail ${selectedImage === index ? "border-orange-500 shadow-md" : "border-gray-200 hover:border-orange-300"}`} whileHover={{ scale: 1.07, borderColor: "#ea580c" }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
                 <img src={image} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
               </motion.button>
             ))}
@@ -106,7 +117,7 @@ export default function OrderPage() {
           <div className="w-full flex flex-col items-center mt-6">
             <h3 className="text-lg font-semibold text-center mb-2">{t('order_happy_customers', 'Join 20,000+ Happy Customers')}</h3>
             {/* Mobile: 1 video at a time with arrows */}
-            <div className="flex flex-row gap-4 justify-center items-end w-full video-mobile-carousel">
+            <div className="flex flex-row gap-4 justify-center items-end w-full video-mobile-carousel video-carousel-container">
               <button
                 className="p-2 text-gray-400 hover:text-orange-500 focus:outline-none"
                 onClick={() => setVideoIdx((videoIdx + videos.length - 1) % videos.length)}
@@ -114,10 +125,19 @@ export default function OrderPage() {
               >
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
               </button>
-              <motion.div key={videoIdx} className="w-full max-w-xs h-[340px] bg-black rounded-2xl shadow-2xl flex flex-col items-center justify-center overflow-hidden relative border-2 border-orange-200 transition-transform duration-200 hover:scale-105 group" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
-                <video src={videos[videoIdx]} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div 
+                  key={videoIdx} 
+                  className="w-full max-w-xs h-[340px] bg-black rounded-2xl shadow-2xl flex flex-col items-center justify-center overflow-hidden relative border-2 border-orange-200 transition-transform duration-200 hover:scale-105 group" 
+                  initial={{ opacity: 0, x: 50 }} 
+                  animate={{ opacity: 1, x: 0 }} 
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                >
+                  <video src={videos[videoIdx]} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
+                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>
+                </motion.div>
+              </AnimatePresence>
               <button
                 className="p-2 text-gray-400 hover:text-orange-500 focus:outline-none"
                 onClick={() => setVideoIdx((videoIdx + 1) % videos.length)}
