@@ -3,8 +3,7 @@ import { useTranslation, Trans } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trash2, ArrowRight, ShoppingCart } from "lucide-react";
-import productImage from "../assets/Product_im.webp";
+import { Trash2, ShoppingCart } from "lucide-react";
 import blog1 from "../assets/blog1.jpg";
 import blog2 from "../assets/blog2.avif";
 import bgVideo from "../assets/bgvid.mp4";
@@ -31,10 +30,7 @@ export default function HeroSection() {
     }, 5000);
     return () => clearInterval(interval);
   }, [carouselProducts.length, paused]);
-  const goLeft = () => {
-    setCarouselIdx((prev) => (prev - 1 + carouselProducts.length) % carouselProducts.length);
-    setPaused(true);
-  };
+
   const goRight = () => {
     setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
     setPaused(true);
@@ -84,10 +80,7 @@ export default function HeroSection() {
   // Find product objects for items in cart
   const cartProducts = cart.map(id => products.find(p => p.id === id)).filter(Boolean);
 
-  const goToOrder = (id: string) => {
-    setCartOpen(false);
-    navigate(`/order/${id}`);
-  };
+
 
   return (
     <>

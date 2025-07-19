@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Search, User, ShoppingCart, Menu, X } from "lucide-react";
+import { Search, User, ShoppingCart, Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
