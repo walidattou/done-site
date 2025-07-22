@@ -5,6 +5,7 @@ import Footer from "./components/footer";
 import Order from "./pages/order";
 import Blog from "./pages/blog"; 
 import ContactForm from "./pages/contact";
+import HairCare from "./pages/haircare";
 import { Toaster } from "react-hot-toast";
 import { products } from "./data/products";
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/order/:productId" element={<Order />} />
         <Route path="/order" element={<Navigate to={`/order/${products[0].id}`} replace />} />
+        <Route path="/haircare" element={<HairCare />} />
         <Route path="/blog" element={<Blog />} /> 
         <Route path="/contact" element={<ContactForm />} />
         <Route path="*" element={<Main />} />
