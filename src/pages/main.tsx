@@ -13,6 +13,12 @@ import mark3 from "../assets/mark3.avif";
 import mark4 from "../assets/mark4.avif";
 import { products } from "../data/products";
 import Nav from "../components/navbar";
+import pack5in1 from '../assets/combined_photos/5in1.png';
+import packProtection from '../assets/combined_photos/Protection.png';
+import packRose from '../assets/combined_photos/rose.png';
+import all3products from '../assets/combined_photos/all3products.png';
+import stylerOil from '../assets/combined_photos/styler+oil.png';
+import stylerProtector from '../assets/combined_photos/styler+protector.png';
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -213,6 +219,7 @@ export default function HeroSection() {
         </div>
       </section>
 
+      {/* Carousel Section */}
       <section
         className="py-10 px-2 sm:px-6 md:px-12 lg:px-24 bg-gray-50"
         onClick={() => goRight()}
@@ -318,6 +325,93 @@ export default function HeroSection() {
               </AnimatePresence>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* OUR PACKS Section */}
+      <section className="py-16 px-2 sm:px-4 md:px-8 lg:px-24 bg-gradient-to-b from-white to-orange-50">
+        <div className="max-w-4xl mx-auto text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Plus vous combinez, plus vous économisez</h2>
+          <p className="text-lg text-gray-600">Choisissez le pack qui vous convient et profitez d’économies exclusives sur nos best-sellers.</p>
+        </div>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+          {/* Pack Essentiel */}
+          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105">
+            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+              <img
+                src={stylerProtector}
+                alt="Pack Essentiel"
+                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+              />
+            </div>
+            <div className="flex-1 flex flex-col items-center w-full">
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Essentiel »</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Spray protecteur</p>
+              <div className="flex flex-col items-center gap-1 mb-2">
+                <span className="text-2xl font-bold text-black">139,99 $ CAD</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~10 $</span>
+              </div>
+            </div>
+            <motion.button
+              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Obtenir ce pack
+            </motion.button>
+          </motion.div>
+
+          {/* Pack Soin Complet */}
+          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105">
+            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+              <img
+                src={stylerOil}
+                alt="Pack Soin Complet"
+                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+              />
+            </div>
+            <div className="flex-1 flex flex-col items-center w-full">
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Soin Complet »</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Élixir</p>
+              <div className="flex flex-col items-center gap-1 mb-2">
+                <span className="text-2xl font-bold text-black">149,99 $ CAD</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~5 $</span>
+              </div>
+            </div>
+            <motion.button
+              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Obtenir ce pack
+            </motion.button>
+          </motion.div>
+
+          {/* Pack Premium Total */}
+          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden">
+            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+              <img
+                src={all3products}
+                alt="Pack Premium Total"
+                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+              />
+            </div>
+            <div className="flex-1 flex flex-col items-center w-full">
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Premium Total »</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Spray + 1 Élixir</p>
+              <div className="flex flex-col items-center gap-1 mb-2">
+                <span className="text-2xl font-bold text-black">169,99 $ CAD</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~15 $</span>
+              </div>
+            </div>
+            <motion.button
+              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Obtenir ce pack
+            </motion.button>
+          </motion.div>
         </div>
       </section>
 
