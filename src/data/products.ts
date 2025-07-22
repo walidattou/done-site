@@ -20,6 +20,10 @@ import p1m4 from '../assets/product2/p1m4.jpg';
 import p1m5 from '../assets/product2/p1m5.jpg';
 import p1m6 from '../assets/product2/p1m6.jpg';
 
+import p3im1 from '../assets/product3/p3im1.jpg';
+import p3im2 from '../assets/product3/p3im2.jpg';
+import p3im3 from '../assets/product3/p3im3.jpg';
+
 export const products = [
   {
     id: 'perlebrush',
@@ -70,6 +74,35 @@ export const products = [
       { title: 'Livraison rapide, fiable et sécurisée', content: 'Expédition suivie en 1-3 jours ouvrés.' },
       { title: 'Service client 24h/24 et 7j/7', content: 'Notre équipe est disponible à tout moment.' },
       { title: 'Spécifications techniques', content: 'Voir la fiche technique complète du produit.' },
+    ],
+    paymentMethods: [
+      { icon: visa, name: 'Visa' },
+      { icon: mastercard, name: 'Mastercard' },
+      { icon: paypal, name: 'PayPal' },
+      { icon: applepay, name: 'Apple Pay' },
+      { icon: amex, name: 'Amex' },
+    ],
+  },
+  {
+    id: 'heat-protection-spray',
+    name: 'Hair Heat Protection Spray',
+    images: [p3im1, p3im2, p3im3],
+    videos: [bgvid, bgvid, bgvid],
+    posters: [mark1, mark2, mark3],
+    price: '€29.99',
+    oldPrice: '€39.99',
+    discount: '-25%',
+    description: [
+      'Protect and nourish your hair with our Hair Heat Protection Spray.',
+      'Infused with deep hydration and nourishing repair properties, this 150ml formula helps prevent heat damage while enhancing natural waves and curls.',
+      'Ideal for achieving soft, beachy textures, it adds volume to fine hair and boosts confidence with every use.',
+      'Perfect for daily styling and thermal protection.'
+    ],
+    features: [
+      { title: 'Deep Hydration', content: 'Nourishes and repairs hair while protecting from heat.' },
+      { title: 'Enhances Texture', content: 'Helps create soft, beachy waves and adds volume.' },
+      { title: 'Daily Use', content: 'Perfect for daily styling and thermal protection.' },
+      { title: 'Large Size', content: '150ml bottle for long-lasting use.' },
     ],
     paymentMethods: [
       { icon: visa, name: 'Visa' },

@@ -28,19 +28,24 @@ export default function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    const serviceId = "service_vygi4wf"
-    const templateId = "template_gmlhh5g"
-    const publicKey = "47Sfd5g4f9BnD8uls"
-
     try {
-      await emailjs.send(serviceId, templateId, formData, publicKey)
-      toast.success(t('contact_success'))
+      const res = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success(t('contact_success'));
       setFormData({
         from_name: "",
         from_email: "",
         phone_number: "",
         message: "",
-      })
+        });
+      } else {
+        toast.error(t('contact_error'));
+      }
     } catch (error) {
       console.error("Failed to send message:", error)
       toast.error(t('contact_error'))

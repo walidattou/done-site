@@ -43,7 +43,7 @@ export default function OrderPage() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Image Section */}
         <motion.div className="space-y-4" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}>
-          <motion.div className="overflow-hidden border-2 border-orange-100 shadow-lg p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl product-image-container" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}>
+          <motion.div className="overflow-hidden border-2 border-orange-100 shadow-lg p-4 sm:p-6 bg-gradient-to-br from-gray-50 to-white rounded-xl product-image-container flex justify-center max-w-sm mx-auto" initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}>
             <AnimatePresence mode="wait">
               <motion.img 
                 key={selectedImage}
@@ -84,6 +84,16 @@ export default function OrderPage() {
             <span className="text-xl text-gray-400 line-through">{product.oldPrice}</span>
             <span className="bg-orange-500 text-white px-3 py-1 text-sm rounded">{product.discount}</span>
           </div>
+
+          {/* Product Description */}
+          <div className="text-gray-700 text-base leading-relaxed mb-2 text-center lg:text-left">
+            {Array.isArray(product.description)
+              ? product.description.map((desc, idx) => (
+                  <p key={idx} className="mb-1">{desc}</p>
+                ))
+              : <p>{product.description}</p>}
+          </div>
+
           <motion.div className="bg-orange-100 border border-orange-200 p-4 rounded-xl text-center lg:text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}>
             <div className="flex items-center justify-center lg:justify-start gap-2 text-orange-800">
               <Fire className="w-4 h-4" />
@@ -134,9 +144,9 @@ export default function OrderPage() {
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.4, ease: 'easeInOut' }}
                 >
-                  <video src={videos[videoIdx]} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
-                  <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>
-                </motion.div>
+                <video src={videos[videoIdx]} controls autoPlay muted loop playsInline className="w-full h-full object-cover rounded-2xl group-hover:brightness-110" style={{ aspectRatio: '9/16', background: '#222' }} />
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent text-white text-sm text-center py-2 px-2 font-medium tracking-wide">{t('order_video_testimonial', 'Customer Testimonial')}</div>
+              </motion.div>
               </AnimatePresence>
               <button
                 className="p-2 text-gray-400 hover:text-orange-500 focus:outline-none"
@@ -157,8 +167,18 @@ export default function OrderPage() {
             </div>
           </div>
 
-          <div className="space-y-3 mt-6">
-            <motion.button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 text-lg rounded" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}><Fire className="w-5 h-5 mr-2 inline-block" /> {t("order_want_now")}</motion.button>
+          {/* --- Sticky Order Button for Mobile --- */}
+          <div className="block fixed bottom-0 left-0 w-full z-50 bg-white p-3 border-t border-orange-200 shadow-lg lg:hidden">
+            <motion.button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 text-lg rounded" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
+              <Fire className="w-5 h-5 mr-2 inline-block" /> {t("order_want_now")}
+            </motion.button>
+          </div>
+
+          {/* --- Desktop Order Button (hidden on mobile) --- */}
+          <div className="space-y-3 mt-6 hidden lg:block">
+            <motion.button className="w-full bg-orange-600 hover:bg-orange-700 text-white font-medium py-4 text-lg rounded" whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.15 }}>
+              <Fire className="w-5 h-5 mr-2 inline-block" /> {t("order_want_now")}
+            </motion.button>
           </div>
 
           {/* --- Payment Methods Section (under button) --- */}

@@ -34,6 +34,8 @@ export default function HeroSection() {
   const goRight = () => {
     setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
     setPaused(true);
+    // Pause auto-advance for 5 seconds after manual click
+    setTimeout(() => setPaused(false), 5000);
   };
 
   useEffect(() => {
@@ -232,6 +234,16 @@ export default function HeroSection() {
                     <>
                       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('rosemary_carousel_title')}</h2>
                       <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('rosemary_carousel_desc')}</p>
+                      <div className="flex flex-wrap gap-4 items-center mt-2">
+                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                        <div className="text-yellow-400 text-xl">★★★★★</div>
+                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                      </div>
+                    </>
+                  ) : carouselProducts[carouselIdx].id === 'heat-protection-spray' ? (
+                    <>
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('heatprotection_title', 'Heat Protection Spray')}</h2>
+                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('heatprotection_desc')}</p>
                       <div className="flex flex-wrap gap-4 items-center mt-2">
                         <div className="text-2xl font-bold text-orange-600">4.8/5</div>
                         <div className="text-yellow-400 text-xl">★★★★★</div>

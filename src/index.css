@@ -2,3 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile carousel improvements */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-card {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Prevent layout shifts during transitions */
+.carousel-text-container {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Smooth mobile transitions */
+@media (max-width: 768px) {
+  .carousel-card {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .carousel-text-container {
+    min-height: 150px;
+  }
+}
+
+/* Prevent flash during image loading */
+.carousel-image {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.carousel-image.loaded {
+  opacity: 1;
+}
+
