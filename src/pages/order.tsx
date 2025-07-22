@@ -80,9 +80,25 @@ export default function OrderPage() {
             </div>
           </div>
           <div className="flex items-center justify-center lg:justify-start gap-4">
-            <span className="text-3xl font-bold text-black">{product.price}</span>
-            <span className="text-xl text-gray-400 line-through">{product.oldPrice}</span>
-            <span className="bg-orange-500 text-white px-3 py-1 text-sm rounded">{product.discount}</span>
+            {/* Price logic for order page */}
+            {product.id === 'perlebrush' && (
+              <>
+                <span className="text-lg text-gray-400 line-through">219.99$</span>
+                <span className="text-3xl font-bold text-orange-600">119.99$ CAD</span>
+              </>
+            )}
+            {product.id === 'rosemary-elixir' && (
+              <>
+                <span className="text-lg text-gray-400 line-through">44.99$</span>
+                <span className="text-3xl font-bold text-orange-600">34.99$</span>
+              </>
+            )}
+            {product.id === 'heat-protection-spray' && (
+              <>
+                <span className="text-lg text-gray-400 line-through">39.99$</span>
+                <span className="text-3xl font-bold text-orange-600">29.99$</span>
+              </>
+            )}
           </div>
 
           {/* Product Description */}

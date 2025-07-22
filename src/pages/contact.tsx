@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
+import emailjs from "@emailjs/browser"
 import { toast } from "react-hot-toast"
 
 export default function ContactForm() {
@@ -28,7 +29,7 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      const res = await fetch('http://localhost:5000/api/send-email', {
+      const res = await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -36,18 +37,17 @@ export default function ContactForm() {
       const data = await res.json();
       if (data.success) {
         toast.success(t('contact_success'));
-      setFormData({
-        from_name: "",
-        from_email: "",
-        phone_number: "",
-        message: "",
+        setFormData({
+          from_name: "",
+          from_email: "",
+          phone_number: "",
+          message: "",
         });
       } else {
         toast.error(t('contact_error'));
       }
     } catch (error) {
-      console.error("Failed to send message:", error)
-      toast.error(t('contact_error'))
+      toast.error(t('contact_error'));
     } finally {
       setIsSubmitting(false)
     }
@@ -63,7 +63,7 @@ export default function ContactForm() {
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 text-center">{t('contact_title')}</h2>
         <p className="text-gray-600 mb-8 text-center">{t('contact_subtitle')}</p>
-        <form onSubmit={handleSubmit} className="w-full space-y-6">
+        <motion.form onSubmit={handleSubmit} className="w-full space-y-6">
           <div className="space-y-2">
             <label htmlFor="from_name" className="block text-sm font-medium text-gray-800">{t('contact_name')}</label>
             <input
@@ -122,7 +122,7 @@ export default function ContactForm() {
           >
             {isSubmitting ? t('contact_sending') : t('contact_send')}
           </motion.button>
-        </form>
+        </motion.form>
         <div className="text-center text-gray-500 text-sm mt-8">
           {t('contact_footer')}
         </div>

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Trash2, ShoppingCart } from "lucide-react";
 import blog1 from "../assets/blog1.jpg";
 import blog2 from "../assets/blog2.avif";
@@ -85,7 +85,31 @@ export default function HeroSection() {
   // Find product objects for items in cart
   const cartProducts = cart.map(id => products.find(p => p.id === id)).filter(Boolean);
 
-
+  // Price logic for carousel card
+  const currentProduct = carouselProducts[carouselIdx];
+  let priceBlock = null;
+  if (currentProduct.id === 'perlebrush') {
+    priceBlock = (
+      <div className="flex items-center gap-4 mb-4">
+        <span className="text-lg text-gray-400 line-through">219.99$</span>
+        <span className="text-2xl font-bold text-orange-600">119.99$ CAD</span>
+      </div>
+    );
+  } else if (currentProduct.id === 'rosemary-elixir') {
+    priceBlock = (
+      <div className="flex items-center gap-4 mb-4">
+        <span className="text-lg text-gray-400 line-through">44.99$</span>
+        <span className="text-2xl font-bold text-orange-600">34.99$</span>
+      </div>
+    );
+  } else if (currentProduct.id === 'heat-protection-spray') {
+    priceBlock = (
+      <div className="flex items-center gap-4 mb-4">
+        <span className="text-lg text-gray-400 line-through">39.99$</span>
+        <span className="text-2xl font-bold text-orange-600">29.99$</span>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -225,101 +249,96 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="relative flex flex-col items-start w-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={carouselProducts[carouselIdx].id + '-text'}
-                  className="space-y-6 w-full"
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 40 }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                >
-                  {carouselProducts[carouselIdx].id === 'rosemary-elixir' ? (
-                    <>
-                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('rosemary_carousel_title')}</h2>
-                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('rosemary_carousel_desc')}</p>
-                      <div className="flex flex-wrap gap-4 items-center mt-2">
-                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                        <div className="text-yellow-400 text-xl">★★★★★</div>
-                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                      </div>
-                    </>
-                  ) : carouselProducts[carouselIdx].id === 'heat-protection-spray' ? (
-                    <>
-                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('heatprotection_title', 'Heat Protection Spray')}</h2>
-                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('heatprotection_desc')}</p>
-                      <div className="flex flex-wrap gap-4 items-center mt-2">
-                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                        <div className="text-yellow-400 text-xl">★★★★★</div>
-                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                        {t("revolutionize_title")}
-                      </h2>
-                      <p className="text-lg text-gray-700 leading-relaxed">
-                        {t("revolutionize_desc1")}
-                      </p>
-                      <p className="text-lg text-gray-700 leading-relaxed">
-                        {t("revolutionize_desc2")}
-                      </p>
-                      <div className="flex flex-wrap gap-4 items-center">
-                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                        <div className="text-yellow-400 text-xl">★★★★★</div>
-                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                      </div>
-                    </>
-                  )}
-                </motion.div>
-              </AnimatePresence>
+              {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
+              <motion.div
+                key={carouselProducts[carouselIdx].id + '-text'}
+                className="space-y-6 w-full"
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 40 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                {carouselProducts[carouselIdx].id === 'rosemary-elixir' ? (
+                  <>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('rosemary_carousel_title')}</h2>
+                    <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('rosemary_carousel_desc')}</p>
+                    <div className="flex flex-wrap gap-4 items-center mt-2">
+                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                      <div className="text-yellow-400 text-xl">★★★★★</div>
+                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                    </div>
+                  </>
+                ) : carouselProducts[carouselIdx].id === 'heat-protection-spray' ? (
+                  <>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('heatprotection_title', 'Heat Protection Spray')}</h2>
+                    <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('heatprotection_desc')}</p>
+                    <div className="flex flex-wrap gap-4 items-center mt-2">
+                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                      <div className="text-yellow-400 text-xl">★★★★★</div>
+                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                      {t("revolutionize_title")}
+                    </h2>
+                    <p className="text-lg text-gray-700 leading-relaxed">
+                      {t("revolutionize_desc1")}
+                    </p>
+                    <p className="text-lg text-gray-700 leading-relaxed">
+                      {t("revolutionize_desc2")}
+                    </p>
+                    <div className="flex flex-wrap gap-4 items-center">
+                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                      <div className="text-yellow-400 text-xl">★★★★★</div>
+                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                    </div>
+                  </>
+                )}
+              </motion.div>
             </div>
             <div className="relative flex flex-col items-center justify-center lg:justify-end w-full mt-8 lg:mt-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={carouselProducts[carouselIdx].id + '-card'}
-                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={e => {
+              {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
+              <motion.div
+                key={carouselProducts[carouselIdx].id + '-card'}
+                className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+                whileTap={{ scale: 0.98 }}
+                onClick={e => {
+                  e.stopPropagation();
+                  navigate(`/order/${carouselProducts[carouselIdx].id}`);
+                }}
+                initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: -30 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+              >
+                <div className="aspect-square rounded-xl mb-4 overflow-hidden">
+                  <img
+                    src={carouselProducts[carouselIdx].images[0]}
+                    alt={carouselProducts[carouselIdx].name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
+                <p className="text-gray-600 mb-4">
+                  {t('product_desc')}
+                </p>
+                {priceBlock}
+                <button
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                  onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/order/${carouselProducts[carouselIdx].id}`);
+                    addToCart(carouselProducts[carouselIdx]);
                   }}
-                  initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: -30 }}
-                  transition={{ duration: 0.7, ease: 'easeOut' }}
                 >
-                  <div className="aspect-square rounded-xl mb-4 overflow-hidden">
-                    <img
-                      src={carouselProducts[carouselIdx].images[0]}
-                      alt={carouselProducts[carouselIdx].name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
-                  <p className="text-gray-600 mb-4">
-                    {t('product_desc')}
-                  </p>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-2xl font-bold text-orange-600">{carouselProducts[carouselIdx].price}</div>
-                    <div className="text-sm text-gray-500 line-through">{carouselProducts[carouselIdx].oldPrice}</div>
-                  </div>
-                  <button
-                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      addToCart(carouselProducts[carouselIdx]);
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                  <div className="text-center text-sm text-gray-500 mt-2">
-                    {t('free_shipping')}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                  Add to Cart
+                </button>
+                <div className="text-center text-sm text-gray-500 mt-2">
+                  {t('free_shipping')}
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -328,12 +347,18 @@ export default function HeroSection() {
       {/* OUR PACKS Section */}
       <section className="py-16 px-2 sm:px-4 md:px-8 lg:px-24 bg-gradient-to-b from-white to-orange-50">
         <div className="max-w-4xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Plus vous combinez, plus vous économisez</h2>
-          <p className="text-lg text-gray-600">Choisissez le pack qui vous convient et profitez d’économies exclusives sur nos best-sellers.</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('our_packs')}</h2>
+          <div className="text-base md:text-lg text-gray-700 font-normal">{t('combine_save')}</div>
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
           {/* Pack Essentiel */}
-          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
+          >
             <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
               <img
                 src={stylerProtector}
@@ -342,11 +367,11 @@ export default function HeroSection() {
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Essentiel »</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Spray protecteur</p>
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_essentiel')}</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_essentiel_desc')}</p>
               <div className="flex flex-col items-center gap-1 mb-2">
                 <span className="text-2xl font-bold text-black">139,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~10 $</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_10')}</span>
               </div>
             </div>
             <motion.button
@@ -354,12 +379,18 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
               whileTap={{ scale: 0.97 }}
             >
-              Obtenir ce pack
+              {t('get_pack')}
             </motion.button>
           </motion.div>
 
           {/* Pack Soin Complet */}
-          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
+          >
             <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
               <img
                 src={stylerOil}
@@ -368,11 +399,11 @@ export default function HeroSection() {
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Soin Complet »</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Élixir</p>
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_soin_complet')}</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_soin_complet_desc')}</p>
               <div className="flex flex-col items-center gap-1 mb-2">
                 <span className="text-2xl font-bold text-black">149,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~5 $</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_5')}</span>
               </div>
             </div>
             <motion.button
@@ -380,12 +411,18 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
               whileTap={{ scale: 0.97 }}
             >
-              Obtenir ce pack
+              {t('get_pack')}
             </motion.button>
           </motion.div>
 
           {/* Pack Premium Total */}
-          <motion.div whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }} className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden"
+          >
             <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
               <img
                 src={all3products}
@@ -394,11 +431,11 @@ export default function HeroSection() {
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">Pack « Premium Total »</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">1 Styler 5 en 1 + 1 Spray + 1 Élixir</p>
+              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_premium_total')}</h3>
+              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_premium_total_desc')}</p>
               <div className="flex flex-col items-center gap-1 mb-2">
                 <span className="text-2xl font-bold text-black">169,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">Économisez ~15 $</span>
+                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_15')}</span>
               </div>
             </div>
             <motion.button
@@ -406,7 +443,7 @@ export default function HeroSection() {
               whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
               whileTap={{ scale: 0.97 }}
             >
-              Obtenir ce pack
+              {t('get_pack')}
             </motion.button>
           </motion.div>
         </div>
