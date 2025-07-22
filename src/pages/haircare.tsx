@@ -106,8 +106,7 @@ export default function HairCare() {
           </motion.div>
           {/* Image Card */}
           <motion.div
-            style={{ marginLeft: '-30px' }}
-            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full mx-auto cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full mx-auto cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl lg:ml-[-30px]"
             whileHover={{ scale: 1.06 }}
             whileTap={{ scale: 0.98 }}
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
