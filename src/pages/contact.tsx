@@ -3,7 +3,6 @@
 import React, { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { motion } from "framer-motion"
-import emailjs from "@emailjs/browser"
 import { toast } from "react-hot-toast"
 
 export default function ContactForm() {

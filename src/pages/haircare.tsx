@@ -1,4 +1,3 @@
-import React from 'react';
 import p1m1 from '../assets/product2/p1m1.jpg';
 import p3im1 from '../assets/product3/p3im1.jpg';
 import { motion } from 'framer-motion';
