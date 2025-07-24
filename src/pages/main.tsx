@@ -16,6 +16,7 @@ import Nav from "../components/navbar";
 import all3products from '../assets/combined_photos/all3products.png';
 import stylerOil from '../assets/combined_photos/styler+oil.png';
 import stylerProtector from '../assets/combined_photos/styler+protector.png';
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -63,14 +64,17 @@ export default function HeroSection() {
       image: blog1,
       date: "July 15, 2024",
       readTime: "3 min read",
+      onClick: () => { window.scrollTo(0, 0); navigate("/blog"); },
     },
+
     {
-      id: 2,
-      title: t("blog2_title"),
-      excerpt: t("blog2_excerpt"),
-      image: blog2,
+      id: 3,
+      title: "The Science Behind Heat-Free Styling",
+      excerpt: "Explore how modern styling technology protects your hair while delivering professional results without damaging heat.",
+      image: blog2, // You can use a new image if available
       date: "July 10, 2024",
       readTime: "5 min read",
+      onClick: () => { window.scrollTo(0, 0); navigate("/blog-heatfree"); },
     },
   ];
 
@@ -250,95 +254,95 @@ export default function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="relative flex flex-col items-start w-full">
               {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
-              <motion.div
-                key={carouselProducts[carouselIdx].id + '-text'}
-                className="space-y-6 w-full"
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 40 }}
-                transition={{ duration: 0.5, ease: 'easeOut' }}
-              >
-                {carouselProducts[carouselIdx].id === 'rosemary-elixir' ? (
-                  <>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('rosemary_carousel_title')}</h2>
-                    <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('rosemary_carousel_desc')}</p>
-                    <div className="flex flex-wrap gap-4 items-center mt-2">
-                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                      <div className="text-yellow-400 text-xl">★★★★★</div>
-                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                    </div>
-                  </>
-                ) : carouselProducts[carouselIdx].id === 'heat-protection-spray' ? (
-                  <>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('heatprotection_title', 'Heat Protection Spray')}</h2>
-                    <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('heatprotection_desc')}</p>
-                    <div className="flex flex-wrap gap-4 items-center mt-2">
-                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                      <div className="text-yellow-400 text-xl">★★★★★</div>
-                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                      {t("revolutionize_title")}
-                    </h2>
-                    <p className="text-lg text-gray-700 leading-relaxed">
-                      {t("revolutionize_desc1")}
-                    </p>
-                    <p className="text-lg text-gray-700 leading-relaxed">
-                      {t("revolutionize_desc2")}
-                    </p>
-                    <div className="flex flex-wrap gap-4 items-center">
-                      <div className="text-2xl font-bold text-orange-600">4.8/5</div>
-                      <div className="text-yellow-400 text-xl">★★★★★</div>
-                      <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
-                    </div>
-                  </>
-                )}
-              </motion.div>
+                <motion.div
+                  key={carouselProducts[carouselIdx].id + '-text'}
+                  className="space-y-6 w-full"
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 40 }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                  {carouselProducts[carouselIdx].id === 'rosemary-elixir' ? (
+                    <>
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('rosemary_carousel_title')}</h2>
+                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('rosemary_carousel_desc')}</p>
+                      <div className="flex flex-wrap gap-4 items-center mt-2">
+                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                        <div className="text-yellow-400 text-xl">★★★★★</div>
+                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                      </div>
+                    </>
+                  ) : carouselProducts[carouselIdx].id === 'heat-protection-spray' ? (
+                    <>
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('heatprotection_title', 'Heat Protection Spray')}</h2>
+                      <p className="text-lg text-gray-700 leading-relaxed whitespace-pre-line">{t('heatprotection_desc')}</p>
+                      <div className="flex flex-wrap gap-4 items-center mt-2">
+                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                        <div className="text-yellow-400 text-xl">★★★★★</div>
+                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                        {t("revolutionize_title")}
+                      </h2>
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {t("revolutionize_desc1")}
+                      </p>
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        {t("revolutionize_desc2")}
+                      </p>
+                      <div className="flex flex-wrap gap-4 items-center">
+                        <div className="text-2xl font-bold text-orange-600">4.8/5</div>
+                        <div className="text-yellow-400 text-xl">★★★★★</div>
+                        <div className="text-gray-600 text-sm sm:text-base">{t("rating")}</div>
+                      </div>
+                    </>
+                  )}
+                </motion.div>
             </div>
             <div className="relative flex flex-col items-center justify-center lg:justify-end w-full mt-8 lg:mt-0">
               {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
-              <motion.div
-                key={carouselProducts[carouselIdx].id + '-card'}
-                className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
-                whileTap={{ scale: 0.98 }}
-                onClick={e => {
-                  e.stopPropagation();
-                  navigate(`/order/${carouselProducts[carouselIdx].id}`);
-                }}
-                initial={{ opacity: 0, scale: 0.95, y: 30 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: -30 }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
-              >
-                <div className="aspect-square rounded-xl mb-4 overflow-hidden">
-                  <img
-                    src={carouselProducts[carouselIdx].images[0]}
-                    alt={carouselProducts[carouselIdx].name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
-                <p className="text-gray-600 mb-4">
-                  {t('product_desc')}
-                </p>
-                {priceBlock}
-                <button
-                  className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
-                  onClick={(e) => {
+                <motion.div
+                  key={carouselProducts[carouselIdx].id + '-card'}
+                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                  whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={e => {
                     e.stopPropagation();
-                    addToCart(carouselProducts[carouselIdx]);
+                    navigate(`/order/${carouselProducts[carouselIdx].id}`);
                   }}
+                  initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -30 }}
+                  transition={{ duration: 0.7, ease: 'easeOut' }}
                 >
-                  Add to Cart
-                </button>
-                <div className="text-center text-sm text-gray-500 mt-2">
-                  {t('free_shipping')}
-                </div>
-              </motion.div>
+                  <div className="aspect-square rounded-xl mb-4 overflow-hidden">
+                    <img
+                      src={carouselProducts[carouselIdx].images[0]}
+                      alt={carouselProducts[carouselIdx].name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
+                  <p className="text-gray-600 mb-4">
+                    {t('product_desc')}
+                  </p>
+                {priceBlock}
+                  <button
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addToCart(carouselProducts[carouselIdx]);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                  <div className="text-center text-sm text-gray-500 mt-2">
+                    {t('free_shipping')}
+                  </div>
+                </motion.div>
             </div>
           </div>
         </div>
@@ -352,100 +356,109 @@ export default function HeroSection() {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
           {/* Pack Essentiel */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
-          >
-            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-              <img
-                src={stylerProtector}
-                alt="Pack Essentiel"
-                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-              />
-            </div>
-            <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_essentiel')}</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_essentiel_desc')}</p>
-              <div className="flex flex-col items-center gap-1 mb-2">
-                <span className="text-2xl font-bold text-black">139,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_10')}</span>
-              </div>
-            </div>
-            <motion.button
-              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-              whileTap={{ scale: 0.97 }}
+          <Link to="/order/pack-essentiel" className="w-full max-w-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
             >
-              {t('get_pack')}
-            </motion.button>
-          </motion.div>
+              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+                <img
+                  src={stylerProtector}
+                  alt="Pack Essentiel"
+                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+                />
+              </div>
+              <div className="flex-1 flex flex-col items-center w-full">
+                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_essentiel')}</h3>
+                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_essentiel_desc')}</p>
+                <div className="flex flex-col items-center gap-1 mb-2">
+                  <span className="text-2xl font-bold text-black">139,99 $ CAD</span>
+                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_10')}</span>
+                </div>
+              </div>
+              <motion.button
+                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+                whileTap={{ scale: 0.97 }}
+                type="button"
+              >
+                {t('get_pack')}
+              </motion.button>
+            </motion.div>
+          </Link>
 
           {/* Pack Soin Complet */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
-          >
-            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-              <img
-                src={stylerOil}
-                alt="Pack Soin Complet"
-                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-              />
-            </div>
-            <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_soin_complet')}</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_soin_complet_desc')}</p>
-              <div className="flex flex-col items-center gap-1 mb-2">
-                <span className="text-2xl font-bold text-black">149,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_5')}</span>
-              </div>
-            </div>
-            <motion.button
-              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-              whileTap={{ scale: 0.97 }}
+          <Link to="/order/pack-soin-complet" className="w-full max-w-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
             >
-              {t('get_pack')}
-            </motion.button>
-          </motion.div>
+              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+                <img
+                  src={stylerOil}
+                  alt="Pack Soin Complet"
+                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+                />
+              </div>
+              <div className="flex-1 flex flex-col items-center w-full">
+                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_soin_complet')}</h3>
+                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_soin_complet_desc')}</p>
+                <div className="flex flex-col items-center gap-1 mb-2">
+                  <span className="text-2xl font-bold text-black">149,99 $ CAD</span>
+                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_5')}</span>
+                </div>
+              </div>
+              <motion.button
+                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+                whileTap={{ scale: 0.97 }}
+                type="button"
+              >
+                {t('get_pack')}
+              </motion.button>
+            </motion.div>
+          </Link>
 
           {/* Pack Premium Total */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-            whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-            className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden"
-          >
-            <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-              <img
-                src={all3products}
-                alt="Pack Premium Total"
-                className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-              />
-            </div>
-            <div className="flex-1 flex flex-col items-center w-full">
-              <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_premium_total')}</h3>
-              <p className="text-gray-700 text-base mb-2 text-center">{t('pack_premium_total_desc')}</p>
-              <div className="flex flex-col items-center gap-1 mb-2">
-                <span className="text-2xl font-bold text-black">169,99 $ CAD</span>
-                <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_15')}</span>
-              </div>
-            </div>
-            <motion.button
-              className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-              whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-              whileTap={{ scale: 0.97 }}
+          <Link to="/order/pack-premium-total" className="w-full max-w-xs">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
+              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
+              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden"
             >
-              {t('get_pack')}
-            </motion.button>
-          </motion.div>
+              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
+                <img
+                  src={all3products}
+                  alt="Pack Premium Total"
+                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
+                />
+              </div>
+              <div className="flex-1 flex flex-col items-center w-full">
+                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_premium_total')}</h3>
+                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_premium_total_desc')}</p>
+                <div className="flex flex-col items-center gap-1 mb-2">
+                  <span className="text-2xl font-bold text-black">169,99 $ CAD</span>
+                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_15')}</span>
+                </div>
+              </div>
+              <motion.button
+                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
+                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
+                whileTap={{ scale: 0.97 }}
+                type="button"
+              >
+                {t('get_pack')}
+              </motion.button>
+            </motion.div>
+          </Link>
         </div>
       </section>
 
@@ -469,10 +482,7 @@ export default function HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: idx * 0.1, duration: 0.5, ease: "easeOut" }}
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  navigate("/blog");
-                }}
+                onClick={post.onClick}
               >
                 <div className="aspect-video bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center">
                   <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
@@ -501,15 +511,15 @@ export default function HeroSection() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
-            <motion.button
-              className="bg-gray-900 hover:bg-gray-800 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate("/blog")}
+    
+          <div className="text-center mt-6">
+            <Link
+              to="/blog-heatfree"
+              className="inline-block bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-lg text-lg shadow-lg transition-colors duration-200 mb-4"
+              style={{ textDecoration: 'none' }}
             >
-              {t("view_all_articles")}
-            </motion.button>
+              The Science Behind Heat-Free Styling
+            </Link>
           </div>
         </div>
       </section>

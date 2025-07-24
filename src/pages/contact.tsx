@@ -36,11 +36,11 @@ export default function ContactForm() {
       const data = await res.json();
       if (data.success) {
         toast.success(t('contact_success'));
-        setFormData({
-          from_name: "",
-          from_email: "",
-          phone_number: "",
-          message: "",
+      setFormData({
+        from_name: "",
+        from_email: "",
+        phone_number: "",
+        message: "",
         });
       } else {
         toast.error(t('contact_error'));

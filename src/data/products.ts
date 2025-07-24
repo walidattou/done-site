@@ -62,12 +62,16 @@ export const products = [
     oldPrice: '€YY.YY',
     discount: '-ZZ%',
     description: [
-      '🌱 About this item',
-      '🌿 Stronger, Healthier, Shinier Hair — Naturally. Packed with rosemary, peppermint, jojoba & argan oils, this elixir deeply nourishes your scalp and repairs dry, damaged hair from root to tip.',
-      '✨ Bye-Bye Breakage & Split Ends. Strengthen every strand, seal split ends, and restore your hair’s natural shine and softness.',
-      '💧 Soothes Scalp & Boosts Growth. Calm itchiness, fight dandruff, and stimulate circulation for visibly thicker, healthier hair.',
-      '🌸 For All Hair Types. Perfect for curls, braids, treated hair, or natural textures — high or low porosity.',
-      '🧳 Travel-Friendly. Compact 50ml size, perfect for your bag or bathroom shelf.'
+      'Stronger, Healthier, Shinier Hair — Naturally',
+      'Formulated with rosemary, peppermint, jojoba, and argan oils, this nutrient-rich elixir deeply nourishes the scalp and helps repair dry, damaged hair from root to tip.',
+      'Reduces Breakage and Split Ends',
+      'Strengthens each strand, seals split ends, and restores your hair’s natural softness and shine.',
+      'Soothes the Scalp and Supports Growth',
+      'Relieves itchiness, helps combat dandruff, and promotes circulation for visibly thicker, healthier hair.',
+      'Suitable for All Hair Types',
+      'Ideal for curly, braided, color-treated, or natural textures — whether high or low porosity.',
+      'Compact and Travel-Friendly',
+      'Comes in a convenient 50ml size, perfect for on-the-go use or bathroom storage.'
     ],
     features: [
       { title: 'Essai sans risque', content: '30 jours satisfait ou remboursé.' },
