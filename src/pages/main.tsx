@@ -122,27 +122,27 @@ export default function HeroSection() {
 
   const featuredProducts = [
     {
-      name: 'AirStyler',
+      nameKey: 'main_airstyler',
       image: shopim1,
-      oldPrice: '219.99$ CAD',
-      price: '119.99$ CAD',
-      tag: 'Offre spéciale',
+      oldPriceKey: 'main_airstyler_oldprice',
+      priceKey: 'main_airstyler_price',
+      tagKey: 'main_special_offer',
       orderPath: '/order/perlebrush',
     },
     {
-      name: 'Rosemary Oil',
+      nameKey: 'main_rosemary',
       image: rosemaryOil,
-      oldPrice: '44.99$ CAD',
-      price: '34.99$ CAD',
-      tag: 'Offre spéciale',
+      oldPriceKey: 'main_rosemary_oldprice',
+      priceKey: 'main_rosemary_price',
+      tagKey: 'main_special_offer',
       orderPath: '/order/rosemary-elixir',
     },
     {
-      name: 'Hair Heat Protection Spray',
+      nameKey: 'main_heatprotection',
       image: brosseIon,
-      oldPrice: '39.99$ CAD',
-      price: '29.99$ CAD',
-      tag: 'Offre spéciale',
+      oldPriceKey: 'main_heatprotection_oldprice',
+      priceKey: 'main_heatprotection_price',
+      tagKey: 'main_special_offer',
       orderPath: '/order/heat-protection-spray',
     },
   ];
@@ -389,20 +389,20 @@ export default function HeroSection() {
       {/* Product Cards Section - Stylists, Rosemary Oil, Last Product */}
       <section className="py-12 px-2 sm:px-6 md:px-12 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Our products</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">{t('main_our_products_title')}</h2>
           <div className="text-lg text-center text-gray-700 mb-8" style={{ fontFamily: fonts.sans }}>
-            Take a look at our products and discover your new favorites.
-        </div>
+            {t('main_our_products_desc')}
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProducts.map((prod, idx) => (
               <Link to={prod.orderPath} key={idx} className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col items-center border border-gray-100 relative transition-transform duration-200 hover:scale-105 group cursor-pointer">
-                <span className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 group-hover:bg-orange-600 transition-colors">{prod.tag}</span>
-                <img src={prod.image} alt={prod.name} className="w-full max-h-60 object-contain mx-auto" />
+                <span className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 group-hover:bg-orange-600 transition-colors">{t(prod.tagKey)}</span>
+                <img src={prod.image} alt={t(prod.nameKey)} className="w-full max-h-60 object-contain mx-auto" />
                 <div className="w-full p-6 flex flex-col items-center">
-                  <div className="text-lg font-semibold text-gray-900 mb-2 text-center">{prod.name}</div>
+                  <div className="text-lg font-semibold text-gray-900 mb-2 text-center">{t(prod.nameKey)}</div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-gray-400 line-through text-base">{prod.oldPrice}</span>
-                    <span className="text-2xl font-bold text-orange-600">{prod.price}</span>
+                    <span className="text-gray-400 line-through text-base">{t(prod.oldPriceKey)}</span>
+                    <span className="text-2xl font-bold text-orange-600">{t(prod.priceKey)}</span>
                   </div>
                 </div>
               </Link>
@@ -480,6 +480,7 @@ export default function HeroSection() {
 }
 
 function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50); // percent
   const dragging = useRef(false);
@@ -529,10 +530,10 @@ function BeforeAfterSlider({ before, after }: { before: string; after: string })
         className="text-3xl md:text-4xl font-bold mb-6 text-center"
         style={{ color: '#111827', fontFamily: fonts.sans }}
       >
-        Before and after using our products
+        {t('main_before_after_title')}
       </h2>
       <div className="text-lg text-center text-gray-700 mb-8" style={{ fontFamily: fonts.sans }}>
-        See the transformation our products can make for your hair.
+        {t('main_before_after_desc')}
       </div>
       <div className="w-full flex justify-center">
         <div

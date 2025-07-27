@@ -5,19 +5,18 @@ import stylerOil from '../assets/combined_photos/styler+oil.png';
 import all3products from '../assets/combined_photos/all3products.png';
 import { fonts } from '../config/fonts';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function OurPacks() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-white py-24 px-4 sm:px-8 md:px-16 lg:px-24 flex flex-col justify-center items-center font-sans">
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <h2
-          className="text-3xl md:text-4xl font-bold mb-6 text-center"
-          style={{ color: '#111827', fontFamily: fonts.sans }}
-        >
-          Nos packs <span className="text-orange-600">exclusifs</span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight text-center" style={{ color: '#111827', fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif' }}>
+          {t('packs_title')}
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 font-light max-w-2xl mx-auto" style={{ fontFamily: fonts.sans }}>
-          Combinez nos produits phares et profitez d'économies exceptionnelles pour une routine capillaire complète !
+        <p className="text-lg md:text-xl text-gray-600 font-light max-w-2xl mx-auto">
+          {t('packs_subtitle')}
         </p>
       </div>
 
@@ -34,17 +33,17 @@ export default function OurPacks() {
             <div className="w-full min-h-[10rem] flex items-center justify-center mb-4">
               <img
                 src={stylerProtector}
-                alt="Pack Essentiel: Styler 5 en 1 + Spray protecteur"
+                alt={t('packs_essentiel_title') + ': ' + t('packs_essentiel_desc')}
                 className="w-48 sm:w-56 h-auto object-contain mx-auto drop-shadow-md"
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full text-center">
-              <h3 className="text-2xl font-bold text-orange-700 mb-2">Pack Essentiel</h3>
-              <p className="text-gray-700 text-base mb-4">Styler 5 en 1 + Spray protecteur</p>
+              <h3 className="text-2xl font-bold text-orange-700 mb-2">{t('packs_essentiel_title')}</h3>
+              <p className="text-gray-700 text-base mb-4">{t('packs_essentiel_desc')}</p>
               <div className="flex flex-col items-center gap-2 mb-4">
-                <span className="text-3xl font-extrabold text-gray-900">139,99 $ CAD</span>
+                <span className="text-3xl font-extrabold text-gray-900">{t('packs_essentiel_price')}</span>
                 <span className="text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full font-semibold tracking-wide">
-                  Économisez 10$
+                  {t('packs_essentiel_save')}
                 </span>
               </div>
             </div>
@@ -54,7 +53,7 @@ export default function OurPacks() {
               whileTap={{ scale: 0.98 }}
               type="button"
             >
-              Commander
+              {t('packs_order')}
             </motion.button>
           </motion.div>
         </Link>
@@ -71,17 +70,17 @@ export default function OurPacks() {
             <div className="w-full min-h-[10rem] flex items-center justify-center mb-4">
               <img
                 src={stylerOil}
-                alt="Pack Soin Complet: Styler 5 en 1 + Huile Elixir"
+                alt={t('packs_soin_complet_title') + ': ' + t('packs_soin_complet_desc')}
                 className="w-48 sm:w-56 h-auto object-contain mx-auto drop-shadow-md"
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full text-center">
-              <h3 className="text-2xl font-bold text-orange-700 mb-2">Pack Soin Complet</h3>
-              <p className="text-gray-700 text-base mb-4">Styler 5 en 1 + Huile Elixir</p>
+              <h3 className="text-2xl font-bold text-orange-700 mb-2">{t('packs_soin_complet_title')}</h3>
+              <p className="text-gray-700 text-base mb-4">{t('packs_soin_complet_desc')}</p>
               <div className="flex flex-col items-center gap-2 mb-4">
-                <span className="text-3xl font-extrabold text-gray-900">149,99 $ CAD</span>
+                <span className="text-3xl font-extrabold text-gray-900">{t('packs_soin_complet_price')}</span>
                 <span className="text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full font-semibold tracking-wide">
-                  Économisez 5$
+                  {t('packs_soin_complet_save')}
                 </span>
               </div>
             </div>
@@ -91,7 +90,7 @@ export default function OurPacks() {
               whileTap={{ scale: 0.98 }}
               type="button"
             >
-              Commander
+              {t('packs_order')}
             </motion.button>
           </motion.div>
         </Link>
@@ -108,17 +107,17 @@ export default function OurPacks() {
             <div className="w-full min-h-[10rem] flex items-center justify-center mb-4">
               <img
                 src={all3products}
-                alt="Pack Premium Total: Styler 5 en 1 + Huile Elixir + Spray protecteur"
+                alt={t('packs_premium_total_title') + ': ' + t('packs_premium_total_desc')}
                 className="w-48 sm:w-56 h-auto object-contain mx-auto drop-shadow-md"
               />
             </div>
             <div className="flex-1 flex flex-col items-center w-full text-center">
-              <h3 className="text-2xl font-bold text-orange-700 mb-2">Pack Premium Total</h3>
-              <p className="text-gray-700 text-base mb-4">Styler 5 en 1 + Huile Elixir + Spray protecteur</p>
+              <h3 className="text-2xl font-bold text-orange-700 mb-2">{t('packs_premium_total_title')}</h3>
+              <p className="text-gray-700 text-base mb-4">{t('packs_premium_total_desc')}</p>
               <div className="flex flex-col items-center gap-2 mb-4">
-                <span className="text-3xl font-extrabold text-gray-900">169,99 $ CAD</span>
+                <span className="text-3xl font-extrabold text-gray-900">{t('packs_premium_total_price')}</span>
                 <span className="text-sm text-green-700 bg-green-100 px-3 py-1 rounded-full font-semibold tracking-wide">
-                  Économisez 15$
+                  {t('packs_premium_total_save')}
                 </span>
               </div>
             </div>
@@ -128,7 +127,7 @@ export default function OurPacks() {
               whileTap={{ scale: 0.98 }}
               type="button"
             >
-              Commander
+              {t('packs_order')}
             </motion.button>
           </motion.div>
         </Link>
