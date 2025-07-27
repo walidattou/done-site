@@ -341,7 +341,7 @@ export default function HeroSection() {
               {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
                 <motion.div
                   key={carouselProducts[carouselIdx].id + '-card'}
-                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full min-w-[320px] min-h-[420px] h-[420px] cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                   whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={e => {
@@ -353,11 +353,12 @@ export default function HeroSection() {
                   exit={{ opacity: 0, scale: 0.95, y: -30 }}
                   transition={{ duration: 0.7, ease: 'easeOut' }}
                 >
-                  <div className="aspect-square rounded-xl mb-4 overflow-hidden">
+                  <div className="w-full aspect-square rounded-xl mb-4 overflow-hidden min-h-[220px] max-h-[220px] flex items-center justify-center">
                     <img
                       src={carouselProducts[carouselIdx].images[0]}
                       alt={carouselProducts[carouselIdx].name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
+                      style={{ maxWidth: '220px', maxHeight: '220px' }}
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
