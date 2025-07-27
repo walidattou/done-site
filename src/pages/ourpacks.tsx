@@ -3,7 +3,6 @@ import { motion } from "framer-motion"
 import stylerProtector from '../assets/combined_photos/styler+protector.png';
 import stylerOil from '../assets/combined_photos/styler+oil.png';
 import all3products from '../assets/combined_photos/all3products.png';
-import { fonts } from '../config/fonts';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
