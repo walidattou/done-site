@@ -25,7 +25,6 @@ const videos = [video1, video2, video3];
 
 export default function OrderPackEssentiel() {
   const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [videoIdx, setVideoIdx] = useState(0);
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
