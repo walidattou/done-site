@@ -362,7 +362,20 @@ export default function HeroSection() {
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
-                  <p className="text-gray-600 mb-4">
+                  <p 
+                    className="text-gray-600 mb-4 overflow-hidden text-ellipsis"
+                    style={{
+                      height: '48px', // About 2 lines on mobile, adjust as needed
+                      display: 'block',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'normal',
+                      lineHeight: '1.2em',
+                      maxHeight: '2.4em', // 2 lines
+                    }}
+                  >
                     {t('product_desc')}
                   </p>
                 {priceBlock}
