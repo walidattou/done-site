@@ -45,20 +45,27 @@ export default function HeroSection() {
   useEffect(() => {
     // Only run on client
     if (typeof window === 'undefined') return;
-    // Only apply on mobile (sm breakpoint and below)
-    const isMobile = window.innerWidth < 640;
-    if (!isMobile) {
-      setDescMaxHeight(undefined);
-      return;
-    }
-    // Measure all descriptions
-    let max = 0;
-    descRefs.current.forEach(ref => {
-      if (ref) {
-        max = Math.max(max, ref.offsetHeight);
+    function measure() {
+      const isMobile = window.innerWidth < 640;
+      if (!isMobile) {
+        setDescMaxHeight(undefined);
+        return;
       }
-    });
-    setDescMaxHeight(max);
+      let max = 0;
+      descRefs.current.forEach(ref => {
+        if (ref) {
+          max = Math.max(max, ref.offsetHeight);
+        }
+      });
+      setDescMaxHeight(max + 8); // add small buffer
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('orientationchange', measure);
+    return () => {
+      window.removeEventListener('resize', measure);
+      window.removeEventListener('orientationchange', measure);
+    };
   }, [carouselProducts, t]);
 
   const goRight = () => {
@@ -362,7 +369,8 @@ export default function HeroSection() {
               {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
                 <motion.div
                   key={carouselProducts[carouselIdx].id + '-card'}
-                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full min-w-[320px] min-h-[420px] h-[420px] cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full min-w-[320px] cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                  style={window.innerWidth < 640 ? {} : { minHeight: 420, height: 420 }}
                   whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={e => {
