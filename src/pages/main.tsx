@@ -38,7 +38,7 @@ export default function HeroSection() {
     if (paused) return;
     const interval = setInterval(() => {
       setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [carouselProducts.length, paused]);
 
