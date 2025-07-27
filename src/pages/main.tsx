@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation, Trans } from "react-i18next";
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Trash2, ShoppingCart } from "lucide-react";
@@ -19,7 +18,7 @@ import rosemaryOil from '../assets/product2/p1m1.jpg';
 import brosseIon from '../assets/product3/p3im1.jpg';
 import beforeImg from '../assets/Before.png';
 import afterImg from '../assets/After.png';
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { colors } from '../config/colors';
 import { fonts } from '../config/fonts';
 
@@ -32,6 +31,9 @@ export default function HeroSection() {
   const [cart, setCart] = useState<string[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const carouselProducts = products;
+  const [descMaxHeight, setDescMaxHeight] = useState<number | undefined>(undefined);
+  const descRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   useEffect(() => {
     if (paused) return;
     const interval = setInterval(() => {
@@ -39,6 +41,25 @@ export default function HeroSection() {
     }, 5000);
     return () => clearInterval(interval);
   }, [carouselProducts.length, paused]);
+
+  useEffect(() => {
+    // Only run on client
+    if (typeof window === 'undefined') return;
+    // Only apply on mobile (sm breakpoint and below)
+    const isMobile = window.innerWidth < 640;
+    if (!isMobile) {
+      setDescMaxHeight(undefined);
+      return;
+    }
+    // Measure all descriptions
+    let max = 0;
+    descRefs.current.forEach(ref => {
+      if (ref) {
+        max = Math.max(max, ref.offsetHeight);
+      }
+    });
+    setDescMaxHeight(max);
+  }, [carouselProducts, t]);
 
   const goRight = () => {
     setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
@@ -362,22 +383,12 @@ export default function HeroSection() {
                     />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
-                  <p 
-                    className="text-gray-600 mb-4 overflow-hidden text-ellipsis"
-                    style={{
-                      height: '48px', // About 2 lines on mobile, adjust as needed
-                      display: 'block',
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: 'vertical',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      whiteSpace: 'normal',
-                      lineHeight: '1.2em',
-                      maxHeight: '2.4em', // 2 lines
-                    }}
+                  <div
+                    className="text-gray-600 mb-4 w-full"
+                    style={descMaxHeight ? { minHeight: descMaxHeight, maxHeight: descMaxHeight, overflow: 'hidden' } : {}}
                   >
-                    {t('product_desc')}
-                  </p>
+                    {t('product_desc', { context: carouselProducts[carouselIdx].id })}
+                  </div>
                 {priceBlock}
                   <button
                     className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
@@ -489,6 +500,20 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
+
+      {/* Hidden descriptions for measuring max height on mobile */}
+      <div style={{ position: 'absolute', visibility: 'hidden', height: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+        {carouselProducts.map((prod, idx) => (
+          <div
+            key={prod.id}
+            ref={el => { descRefs.current[idx] = el; }}
+            style={{ width: '320px', fontSize: '1rem', lineHeight: '1.5', padding: 0, margin: 0 }}
+            className="text-gray-600"
+          >
+            {t('product_desc', { context: prod.id })}
+          </div>
+        ))}
+      </div>
     </>
   );
 }
