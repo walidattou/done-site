@@ -17,6 +17,14 @@ import all3products from '../assets/combined_photos/all3products.png';
 import stylerOil from '../assets/combined_photos/styler+oil.png';
 import stylerProtector from '../assets/combined_photos/styler+protector.png';
 import { Link } from "react-router-dom";
+import shopim1 from '../assets/shopim1.webp';
+import rosemaryOil from '../assets/product2/p1m1.jpg';
+import brosseIon from '../assets/product3/p3im1.jpg';
+import beforeImg from '../assets/Before.png';
+import afterImg from '../assets/After.png';
+import React, { useRef } from 'react';
+import { colors } from '../config/colors';
+import { fonts } from '../config/fonts';
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -114,6 +122,33 @@ export default function HeroSection() {
       </div>
     );
   }
+
+  const featuredProducts = [
+    {
+      name: 'AirStyler',
+      image: shopim1,
+      oldPrice: '219.99$ CAD',
+      price: '119.99$ CAD',
+      tag: 'Offre spéciale',
+      orderPath: '/order/perlebrush',
+    },
+    {
+      name: 'Rosemary Oil',
+      image: rosemaryOil,
+      oldPrice: '44.99$ CAD',
+      price: '34.99$ CAD',
+      tag: 'Offre spéciale',
+      orderPath: '/order/rosemary-elixir',
+    },
+    {
+      name: 'Hair Heat Protection Spray',
+      image: brosseIon,
+      oldPrice: '39.99$ CAD',
+      price: '29.99$ CAD',
+      tag: 'Offre spéciale',
+      orderPath: '/order/heat-protection-spray',
+    },
+  ];
 
   return (
     <>
@@ -247,7 +282,10 @@ export default function HeroSection() {
       {/* Carousel Section */}
       <section
         className="py-10 px-2 sm:px-6 md:px-12 lg:px-24 bg-gray-50"
-        onClick={() => goRight()}
+        onClick={() => {
+          setPaused(true);
+          goRight();
+        }}
         style={{ cursor: 'pointer' }}
       >
         <div className="max-w-7xl mx-auto">
@@ -348,119 +386,36 @@ export default function HeroSection() {
         </div>
       </section>
 
-      {/* OUR PACKS Section */}
-      <section className="py-16 px-2 sm:px-4 md:px-8 lg:px-24 bg-gradient-to-b from-white to-orange-50">
-        <div className="max-w-4xl mx-auto text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{t('our_packs')}</h2>
-          <div className="text-base md:text-lg text-gray-700 font-normal">{t('combine_save')}</div>
+      {/* Before/After Slider Section */}
+      <BeforeAfterSlider before={beforeImg} after={afterImg} />
+
+      {/* Product Cards Section - Stylists, Rosemary Oil, Last Product */}
+      <section className="py-12 px-2 sm:px-6 md:px-12 lg:px-24 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Our products</h2>
+          <div className="text-lg text-center text-gray-700 mb-8" style={{ fontFamily: fonts.sans }}>
+            Take a look at our products and discover your new favorites.
         </div>
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-          {/* Pack Essentiel */}
-          <Link to="/order/pack-essentiel" className="w-full max-w-xs">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
-              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-                <img
-                  src={stylerProtector}
-                  alt="Pack Essentiel"
-                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-                />
-              </div>
-              <div className="flex-1 flex flex-col items-center w-full">
-                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_essentiel')}</h3>
-                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_essentiel_desc')}</p>
-                <div className="flex flex-col items-center gap-1 mb-2">
-                  <span className="text-2xl font-bold text-black">139,99 $ CAD</span>
-                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_10')}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredProducts.map((prod, idx) => (
+              <Link to={prod.orderPath} key={idx} className="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col items-center border border-gray-100 relative transition-transform duration-200 hover:scale-105 group cursor-pointer">
+                <span className="absolute top-4 left-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10 group-hover:bg-orange-600 transition-colors">{prod.tag}</span>
+                <img src={prod.image} alt={prod.name} className="w-full max-h-60 object-contain mx-auto" />
+                <div className="w-full p-6 flex flex-col items-center">
+                  <div className="text-lg font-semibold text-gray-900 mb-2 text-center">{prod.name}</div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-gray-400 line-through text-base">{prod.oldPrice}</span>
+                    <span className="text-2xl font-bold text-orange-600">{prod.price}</span>
+                  </div>
                 </div>
+              </Link>
+            ))}
               </div>
-              <motion.button
-                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-                whileTap={{ scale: 0.97 }}
-                type="button"
-              >
-                {t('get_pack')}
-              </motion.button>
-            </motion.div>
-          </Link>
-
-          {/* Pack Soin Complet */}
-          <Link to="/order/pack-soin-complet" className="w-full max-w-xs">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-                <img
-                  src={stylerOil}
-                  alt="Pack Soin Complet"
-                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-                />
-              </div>
-              <div className="flex-1 flex flex-col items-center w-full">
-                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_soin_complet')}</h3>
-                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_soin_complet_desc')}</p>
-                <div className="flex flex-col items-center gap-1 mb-2">
-                  <span className="text-2xl font-bold text-black">149,99 $ CAD</span>
-                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_5')}</span>
-                </div>
-              </div>
-              <motion.button
-                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-                whileTap={{ scale: 0.97 }}
-                type="button"
-              >
-                {t('get_pack')}
-              </motion.button>
-            </motion.div>
-          </Link>
-
-          {/* Pack Premium Total */}
-          <Link to="/order/pack-premium-total" className="w-full max-w-xs">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.5, ease: 'easeOut' }}
-              whileHover={{ y: -10, boxShadow: '0 8px 32px rgba(255,140,0,0.10)', scale: 1.04 }}
-              className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 flex flex-col justify-between items-center w-full max-w-xs h-96 border border-orange-100 transition-all duration-300 hover:scale-105 overflow-hidden"
-            >
-              <div className="w-full min-h-[7rem] flex items-center justify-center mb-2">
-                <img
-                  src={all3products}
-                  alt="Pack Premium Total"
-                  className="w-32 sm:w-40 md:w-48 h-auto object-contain mx-auto"
-                />
-              </div>
-              <div className="flex-1 flex flex-col items-center w-full">
-                <h3 className="text-xl font-semibold text-orange-700 mb-1 text-center">{t('pack_premium_total')}</h3>
-                <p className="text-gray-700 text-base mb-2 text-center">{t('pack_premium_total_desc')}</p>
-                <div className="flex flex-col items-center gap-1 mb-2">
-                  <span className="text-2xl font-bold text-black">169,99 $ CAD</span>
-                  <span className="text-sm text-green-600 bg-green-50 px-2 py-0.5 rounded-full font-medium">{t('save_15')}</span>
-                </div>
-              </div>
-              <motion.button
-                className="mt-auto w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 shadow text-base"
-                whileHover={{ scale: 1.06, filter: 'brightness(1.1)' }}
-                whileTap={{ scale: 0.97 }}
-                type="button"
-              >
-                {t('get_pack')}
-              </motion.button>
-            </motion.div>
-          </Link>
         </div>
       </section>
+
+      {/* OUR PACKS Section */}
+      {/* Remove the section with heading {t('our_packs')} and its content (packs grid/cards) */}
 
       <section className="py-16 px-4 sm:px-8 md:px-16 lg:px-24 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -524,5 +479,126 @@ export default function HeroSection() {
         </div>
       </section>
     </>
+  );
+}
+
+function BeforeAfterSlider({ before, after }: { before: string; after: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [sliderPos, setSliderPos] = useState(50); // percent
+  const dragging = useRef(false);
+
+  const onDrag = (e: React.MouseEvent | React.TouchEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    let clientX = 0;
+    if ('touches' in e && e.touches.length > 0) {
+      clientX = e.touches[0].clientX;
+    } else if ('clientX' in e) {
+      clientX = e.clientX;
+    }
+    let percent = ((clientX - rect.left) / rect.width) * 100;
+    percent = Math.max(0, Math.min(100, percent));
+    setSliderPos(percent);
+  };
+
+  const startDrag = () => { dragging.current = true; };
+  const stopDrag = () => { dragging.current = false; };
+
+  React.useEffect(() => {
+    const move = (e: MouseEvent | TouchEvent) => {
+      if (!dragging.current) return;
+      if ('touches' in e && (e as TouchEvent).touches.length > 0) {
+        onDrag(e as any);
+      } else if ('clientX' in e) {
+        onDrag(e as any);
+      }
+    };
+    const up = () => { dragging.current = false; };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('touchmove', move);
+    window.addEventListener('mouseup', up);
+    window.addEventListener('touchend', up);
+    return () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('touchmove', move);
+      window.removeEventListener('mouseup', up);
+      window.removeEventListener('touchend', up);
+    };
+  }, []);
+
+  return (
+    <div className="w-full flex flex-col items-center justify-center py-10">
+      <h2
+        className="text-3xl md:text-4xl font-bold mb-6 text-center"
+        style={{ color: '#111827', fontFamily: fonts.sans }}
+      >
+        Before and after using our products
+      </h2>
+      <div className="text-lg text-center text-gray-700 mb-8" style={{ fontFamily: fonts.sans }}>
+        See the transformation our products can make for your hair.
+      </div>
+      <div className="w-full flex justify-center">
+        <div
+          ref={containerRef}
+          className="relative w-full max-w-5xl h-[400px] rounded-xl overflow-hidden select-none"
+          style={{ background: colors.background, touchAction: 'none', fontFamily: fonts.sans }}
+          onMouseDown={startDrag}
+          onTouchStart={startDrag}
+          onMouseMove={dragging.current ? onDrag : undefined}
+          onTouchMove={dragging.current ? onDrag : undefined}
+          onMouseUp={stopDrag}
+          onTouchEnd={stopDrag}
+        >
+          {/* Before image */}
+          <div className="absolute inset-0 w-full h-full flex items-end justify-center p-0 m-0">
+            <img
+              src={before}
+              alt="Before"
+              className="max-w-[90%] max-h-[90%] w-auto h-auto object-contain object-bottom"
+              style={{ fontFamily: fonts.sans }}
+            />
+          </div>
+          {/* After image, clipped */}
+          <div
+            className="absolute inset-0 w-full h-full flex items-end justify-center p-0 m-0"
+            style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+          >
+            <img
+              src={after}
+              alt="After"
+              className="max-w-[90%] max-h-[90%] w-auto h-auto object-contain object-bottom"
+              style={{ fontFamily: fonts.sans }}
+            />
+          </div>
+          {/* Slider handle */}
+          <div
+            className="absolute top-0 left-0 h-full flex items-center justify-center"
+            style={{ left: `calc(${sliderPos}% - 24px)` }}
+          >
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center cursor-pointer border-4 border-white shadow-lg z-20"
+              style={{ transform: 'translateX(-50%)', background: 'rgb(234 88 12 / var(--tw-bg-opacity, 1))' }}
+              onMouseDown={startDrag}
+              onTouchStart={startDrag}
+            >
+              <span className="text-white text-2xl" style={{ fontFamily: fonts.sans }}>&#8596;</span>
+            </div>
+          </div>
+          {/* Labels */}
+          <span
+            className="absolute top-3 left-3 text-white text-xs font-bold px-3 py-1 rounded"
+            style={{ background: colors.muted, fontFamily: fonts.sans }}
+          >
+            Après
+          </span>
+          <span
+            className="absolute top-3 right-3 text-white text-xs font-bold px-3 py-1 rounded"
+            style={{ background: colors.muted, fontFamily: fonts.sans }}
+          >
+            Avant
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }

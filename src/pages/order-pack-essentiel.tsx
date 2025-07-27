@@ -175,14 +175,26 @@ export default function OrderPackEssentiel() {
 
           {/* --- Accordion Dropdown Section (styled, full width) --- */}
           <div className="w-full mt-8">
-            {[1,2,3,4].map((idx: number) => (
-              <AccordionItem
-                key={idx}
-                icon={null}
-                title={`FAQ ${idx}`}
-                content={`FAQ content for item ${idx}`}
-              />
-            ))}
+            <AccordionItem
+              icon={null}
+              title="Risk-free trial"
+              content="30-day money-back guarantee."
+            />
+            <AccordionItem
+              icon={null}
+              title="Fast, reliable & secure delivery"
+              content="Tracked shipping in 1-3 business days."
+            />
+            <AccordionItem
+              icon={null}
+              title="24/7 customer service"
+              content="Our team is available at any time."
+            />
+            <AccordionItem
+              icon={null}
+              title="Technical specifications"
+              content="See the full product technical sheet."
+            />
           </div>
         </motion.div>
       </div>

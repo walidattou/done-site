@@ -21,8 +21,12 @@ import p1m5 from '../assets/product2/p1m5.jpg';
 import p1m6 from '../assets/product2/p1m6.jpg';
 
 import p3im1 from '../assets/product3/p3im1.jpg';
-import p3im2 from '../assets/product3/p3im2.jpg';
 import p3im3 from '../assets/product3/p3im3.jpg';
+import p3im4 from '../assets/product3/p3im4.webp';
+import p3im5 from '../assets/product3/p3im5.webp';
+import p3im6 from '../assets/product3/p3im6.webp';
+import p3im7 from '../assets/product3/p3im7.webp';
+import P3IM from '../assets/product3/P3IM.webp';
 
 export const products = [
   {
@@ -90,7 +94,7 @@ export const products = [
   {
     id: 'heat-protection-spray',
     name: 'Hair Heat Protection Spray',
-    images: [p3im1, p3im2, p3im3],
+    images: [p3im1, p3im3, p3im4, p3im5, p3im6, p3im7, P3IM],
     videos: [bgvid, bgvid, bgvid],
     posters: [mark1, mark2, mark3],
     price: '€29.99',

@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Nav from "./components/navbar";
 import Main from "./pages/main";
 import Footer from "./components/footer";
@@ -10,13 +11,23 @@ import OrderPackEssentiel from './pages/order-pack-essentiel';
 import OrderPackSoinComplet from './pages/order-pack-soin-complet';
 import OrderPackPremiumTotal from './pages/order-pack-premium-total';
 import BlogHeatFreePage from "./pages/blog-heatfree";
+import OurPacks from "./pages/ourpacks";
 import { Toaster } from "react-hot-toast";
 import { products } from "./data/products";
 
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -29,6 +40,7 @@ function App() {
         <Route path="/blog" element={<Blog />} /> 
         <Route path="/blog-heatfree" element={<BlogHeatFreePage />} /> {/* NEW: Heat-Free Styling Blog Page */}
         <Route path="/contact" element={<ContactForm />} />
+        <Route path="/ourpacks" element={<OurPacks />} />
         <Route path="*" element={<Main />} />
       </Routes>
       <Footer />

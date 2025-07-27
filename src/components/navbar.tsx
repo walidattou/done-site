@@ -111,6 +111,7 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
               <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_home")}</Link>
               <Link to="/order/perlebrush" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_styler")}</Link>
               <Link to="/haircare" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t("nav_haircare")}</Link>
+              <Link to="/ourpacks" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">Nos packs</Link>
               <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-1 rounded-lg whitespace-nowrap">{t('contact_title')}</Link>
             </nav>
           )}
@@ -178,7 +179,7 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
                   <AnimatePresence>
                     {langMenuOpen && (
                       <motion.div
-                        className="absolute left-0 top-full mt-2 min-w-[120px] bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                        className="absolute right-0 left-auto top-full mt-2 min-w-[120px] w-max max-w-xs overflow-x-auto bg-white border border-gray-200 rounded-lg shadow-lg z-50"
                         initial={{ y: -10, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -10, opacity: 0 }}
@@ -245,6 +246,7 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
               <Link to="/" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_home")}</Link>
               <Link to="/order/perlebrush" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_styler")}</Link>
               <Link to="/haircare" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t("nav_haircare")}</Link>
+              <Link to="/ourpacks" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>Nos packs</Link>
               <Link to="/contact" className="text-gray-700 hover:text-gray-900 text-base font-medium px-2 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" onClick={() => setMobileMenuOpen(false)}>{t('contact_title')}</Link>
             </motion.nav>
           )}
