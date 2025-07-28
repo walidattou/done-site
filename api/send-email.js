@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     port: 587,
     secure: false,
     auth: {
-      user: process.env.EMAIL_USER, // Set in Vercel dashboard
-      pass: process.env.EMAIL_PASS, // Set in Vercel dashboard
+      user: 'contactwebsite988@gmail.com',
+      pass: 'uzpz swow ueio zygd',
     },
   });
 
