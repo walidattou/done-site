@@ -28,24 +28,34 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      const res = await fetch('/api/route', {
+      // Using Formspree - replace YOUR_FORM_ID with your actual Formspree form ID
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.from_name);
+      formDataToSend.append('email', formData.from_email);
+      formDataToSend.append('phone', formData.phone_number);
+      formDataToSend.append('message', formData.message);
+
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: formDataToSend,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
-      const data = await res.json();
-      if (data.success) {
+
+      if (response.ok) {
         toast.success(t('contact_success'));
-      setFormData({
-        from_name: "",
-        from_email: "",
-        phone_number: "",
-        message: "",
+        setFormData({
+          from_name: "",
+          from_email: "",
+          phone_number: "",
+          message: "",
         });
       } else {
         toast.error(t('contact_error'));
       }
     } catch (error) {
+      console.error('Formspree error:', error);
       toast.error(t('contact_error'));
     } finally {
       setIsSubmitting(false)
