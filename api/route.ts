@@ -1,7 +1,6 @@
-// @ts-ignore
 import nodemailer from 'nodemailer';
 
-export async function POST(req) {
+export async function POST(req: Request) {
   try {
     console.log('API route called');
     
@@ -16,10 +15,10 @@ export async function POST(req) {
     const html = `<b>Name:</b> ${from_name}<br/><b>Email:</b> ${from_email}<br/><b>Phone:</b> ${phone_number}<br/><b>Message:</b> ${message}`;
 
     console.log('Creating transporter...');
+    
+    // Try a simpler configuration first
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false,
+      service: 'gmail',
       auth: {
         user: 'contactwebsite988@gmail.com',
         pass: 'uzpz swow ueio zygd',
@@ -27,16 +26,21 @@ export async function POST(req) {
     });
 
     console.log('Transporter created, sending mail...');
-    await transporter.sendMail({
-      from: 'noreply@confortplus65.com',
+    
+    const mailOptions = {
+      from: 'contactwebsite988@gmail.com', // Use the same email as auth
       to: 'walidattou123A@gmail.com',
       subject,
       text,
       html,
       replyTo: from_email,
-    });
+    };
 
-    console.log('Email sent successfully');
+    console.log('Mail options:', mailOptions);
+    
+    const result = await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully:', result);
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
