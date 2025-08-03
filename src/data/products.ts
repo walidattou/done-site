@@ -1,8 +1,11 @@
 // Product data for the order template page
 import shopim1 from '../assets/shopim1.webp';
-import shopim2 from '../assets/shopim2.webp';
-import shopim3 from '../assets/shopim3.webp';
-import shopim4 from '../assets/shopim4.webp';
+import shopim2 from '../assets/product1/P1.webp';
+import shopim3 from '../assets/product1/P12.webp';
+import shopim4 from '../assets/product1/P13.webp';
+import shopim5 from '../assets/product1/P14.webp';
+import shopim6 from '../assets/product1/P15.webp';
+import shopim7 from '../assets/product1/P16.webp';
 import mark1 from '../assets/mark1.avif';
 import mark2 from '../assets/mark2.avif';
 import mark3 from '../assets/mark3.avif';
@@ -32,7 +35,7 @@ export const products = [
   {
     id: 'perlebrush',
     name: 'PerleBrush Styler',
-    images: [shopim1, shopim2, shopim3, shopim4],
+    images: [shopim1, shopim2, shopim3, shopim4,shopim5,shopim6,shopim7],
     videos: [bgvid, bgvid, bgvid],
     posters: [mark1, mark2, mark3],
     price: '€49.99',

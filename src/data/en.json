@@ -1,7 +1,7 @@
 {
   "hero_title": "Sun's Out, Shine's On <0>Style</0><1/><2>in 5 Minutes.</2>",
   "hero_reviews": "based on 4,210 reviews",
-  "hero_desc": "Beach-bar texture or sleek glass hair, all from the same tool. Summer-only savings end at midnight.",
+  "hero_desc": "Discover all the benefits of this revolutionary product for your hair. It smooths, protects, and enhances in a single step, all while respecting the hair fiber. Thanks to its advanced technology, your hair becomes shinier, softer, and visibly healthier. A complete solution for professional results at home — your hair will love it!",
   "shop_now": "Shop Now",
   "trusted_by": "Trusted by top brands",
   "revolutionize_title": "Revolutionize Your Hair Routine",
@@ -123,7 +123,7 @@
   "contact_sending": "Sending...",
   "contact_success": "Your message has been successfully sent. We'll get back to you soon.",
   "contact_error": "Failed to send your message. Please try again later.",
-  "contact_footer": "We aim to respond within 24 hours.",
+  "contact_footer": "We'll get back to you within 24 hours",
   "rosemary_name": "Rosemary Hair Elixir",
   "rosemary_desc": "Not just another hair oil — this elixir delivers naturally stronger, shinier, healthier hair. Formulated with rosemary, peppermint, jojoba, and argan oils, it deeply nourishes and repairs from root to tip.\n\nSay goodbye to breakage and split ends. Each use strengthens strands, seals damaged ends, and revives softness and shine.\n\nCalms itchy, flaky scalps and supports growth. Promotes circulation for visibly thicker, fuller hair.\n\nWorks for all hair types — curly, straight, coily, relaxed, or color-treated. High or low porosity, it adapts to your texture.\n\nCompact 50ml bottle — easy to travel with, perfect for your daily routine.",
   "rosemary_feature1": "Stronger, Shinier, Healthier Hair — Naturally.",
@@ -170,5 +170,22 @@
   "main_rosemary_price": "34.99$ CAD",
   "main_heatprotection": "Hair Heat Protection Spray",
   "main_heatprotection_oldprice": "39.99$ CAD",
-  "main_heatprotection_price": "29.99$ CAD"
+  "main_heatprotection_price": "29.99$ CAD",
+  "testimonials_title": "Our Happy Customers",
+  "testimonials_subtitle": "What professional stylists say about AirStyler Pro",
+  "customer1_name": "Sarah Johnson",
+  "customer1_title": "Professional Stylist",
+  "customer1_testimonial": "As a professional stylist, I've worked with a wide range of hair tools, but the AirStyler Pro stands out above the rest. It's incredibly versatile, remarkably gentle on all hair types, and consistently delivers salon-quality results. My clients notice the difference—and they love it.",
+  
+  "customer2_name": "Maria Rodriguez",
+  "customer2_title": "Hair Specialist",
+  "customer2_testimonial": "I've tried just about every hair tool out there, and honestly, the AirStyler Pro blew me away! It's super easy to use, kind to the hair, and the results? Gorgeous. Every. Single. Time. My clients can't stop raving about how great their hair looks and feels.",
+  
+  "customer3_name": "Emma Thompson",
+  "customer3_title": "Senior Stylist",
+  "customer3_testimonial": "The AirStyler Pro is hands-down the best tool I've used in my styling career. It's gentle, adaptable, and always leaves hair looking flawless. My clients are obsessed with the final look.",
+  
+  "customer4_name": "Lisa Chen",
+  "customer4_title": "Beauty Expert",
+  "customer4_testimonial": "I wasn't expecting to love the AirStyler Pro this much, but here we are. It handles every hair type beautifully, doesn't cause damage, and gives that smooth, styled finish clients dream of. I use it all the time now—it's become a must-have in my kit."
 } 

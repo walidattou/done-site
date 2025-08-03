@@ -1,7 +1,7 @@
 {
   "hero_title": "Le soleil brille, le style aussi <0>Style</0><1/><2>en 5 minutes.</2>",
   "hero_reviews": "basé sur 4 210 avis",
-  "hero_desc": "Texture plage ou cheveux lisses, tout avec le même outil. Offres d'été jusqu'à minuit.",
+  "hero_desc": "Découvrez tous les bienfaits de ce produit révolutionnaire pour vos cheveux. Il lisse, protège et sublime en un seul geste, tout en respectant la fibre capillaire. Grâce à sa technologie avancée, vos cheveux sont plus brillants, plus doux, et visiblement en meilleure santé. Une solution complète pour des résultats professionnels à la maison — vos cheveux vont adorer !",
   "shop_now": "Acheter maintenant",
   "trusted_by": "Approuvé par les plus grandes marques",
   "revolutionize_title": "Révolutionnez votre routine capillaire",
@@ -123,7 +123,7 @@
   "contact_sending": "Envoi...",
   "contact_success": "Votre message a bien été envoyé. Nous vous répondrons rapidement.",
   "contact_error": "Échec de l'envoi du message. Veuillez réessayer plus tard.",
-  "contact_footer": "Nous répondons sous 24h.",
+  "contact_footer": "Nous vous répondrons dans les 24 heures",
   "rosemary_name": "Élixir Capillaire au Romarin",
   "rosemary_desc": "Bien plus qu'une simple huile — cet élixir offre des cheveux naturellement plus forts, brillants et sains. Formulé avec du romarin, de la menthe poivrée, du jojoba et de l'huile d'argan, il nourrit et répare en profondeur de la racine aux pointes.\n\nDites adieu à la casse et aux pointes fourchues. Chaque utilisation renforce la fibre, scelle les pointes abîmées et redonne douceur et éclat.\n\nApaise les cuirs chevelus irrités et favorise la croissance. Stimule la circulation pour une chevelure visiblement plus dense et volumineuse.\n\nConvient à tous les types de cheveux — bouclés, lisses, crépus, défrisés ou colorés. Haute ou basse porosité, il s'adapte à votre texture.\n\nFlacon compact de 50ml — facile à emporter, parfait pour votre routine quotidienne.",
   "rosemary_feature1": "Cheveux plus forts, brillants et sains — naturellement.",
@@ -171,5 +171,22 @@
   "main_rosemary_price": "34,99$ CAD",
   "main_heatprotection": "Spray Protecteur de Chaleur",
   "main_heatprotection_oldprice": "39,99$ CAD",
-  "main_heatprotection_price": "29,99$ CAD"
+  "main_heatprotection_price": "29,99$ CAD",
+  "testimonials_title": "Nos Clients Satisfaits",
+  "testimonials_subtitle": "Ce que disent les coiffeurs professionnels de l'AirStyler Pro",
+  "customer1_name": "Sarah Johnson",
+  "customer1_title": "Coiffeuse Professionnelle",
+  "customer1_testimonial": "En tant que coiffeuse professionnelle, j'ai travaillé avec une large gamme d'outils capillaires, mais l'AirStyler Pro se démarque vraiment. Il est incroyablement polyvalent, remarquablement doux sur tous les types de cheveux, et livre constamment des résultats de qualité salon. Mes clients remarquent la différence—et ils l'adorent.",
+  
+  "customer2_name": "Maria Rodriguez",
+  "customer2_title": "Spécialiste Capillaire",
+  "customer2_testimonial": "J'ai essayé à peu près tous les outils capillaires qui existent, et honnêtement, l'AirStyler Pro m'a vraiment impressionnée ! Il est super facile à utiliser, doux pour les cheveux, et les résultats ? Magnifiques. À chaque fois. Mes clients ne cessent de vanter la beauté et la sensation de leurs cheveux.",
+  
+  "customer3_name": "Emma Thompson",
+  "customer3_title": "Coiffeuse Senior",
+  "customer3_testimonial": "L'AirStyler Pro est de loin le meilleur outil que j'ai utilisé dans ma carrière de coiffeuse. Il est doux, adaptable, et laisse toujours les cheveux parfaitement coiffés. Mes clients sont obsédés par le résultat final.",
+  
+  "customer4_name": "Lisa Chen",
+  "customer4_title": "Experte Beauté",
+  "customer4_testimonial": "Je ne m'attendais pas à aimer l'AirStyler Pro autant, mais nous y voilà. Il gère magnifiquement tous les types de cheveux, ne cause pas de dommages, et donne cette finition lisse et coiffée dont les clients rêvent. Je l'utilise tout le temps maintenant—c'est devenu un incontournable dans ma trousse."
 } 

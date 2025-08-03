@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Trash2, ShoppingCart } from "lucide-react";
 import blog1 from "../assets/blog1.jpg";
 import blog2 from "../assets/blog2.avif";
-import bgVideo from "../assets/bgvid.mp4";
+import bgImage from "../assets/COV.webp";
 import mark1 from "../assets/mark1.avif";
 import mark2 from "../assets/mark2.avif";
 import mark3 from "../assets/mark3.avif";
@@ -18,6 +18,10 @@ import rosemaryOil from '../assets/product2/p1m1.jpg';
 import brosseIon from '../assets/product3/p3im1.jpg';
 import beforeImg from '../assets/Before.png';
 import afterImg from '../assets/After.png';
+import ba1 from '../assets/BA photos/BA1.webp';
+import ba2 from '../assets/BA photos/BA2.webp';
+import ba3 from '../assets/BA photos/BA3.webp';
+import ba4 from '../assets/BA photos/BA4.webp';
 import React, { useRef, useEffect, useState } from 'react';
 import { colors } from '../config/colors';
 import { fonts } from '../config/fonts';
@@ -26,7 +30,7 @@ export default function HeroSection() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const location = useLocation();
-  const [carouselIdx, setCarouselIdx] = useState(0);
+  const [carouselIdx] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cart, setCart] = useState<string[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -34,13 +38,13 @@ export default function HeroSection() {
   const [descMaxHeight, setDescMaxHeight] = useState<number | undefined>(undefined);
   const descRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useEffect(() => {
-    if (paused) return;
-    const interval = setInterval(() => {
-      setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [carouselProducts.length, paused]);
+  // useEffect(() => {
+  //   if (paused) return;
+  //   const interval = setInterval(() => {
+  //     setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
+  //   }, 10000);
+  //   return () => clearInterval(interval);
+  // }, [carouselProducts.length, paused]);
 
   useEffect(() => {
     // Only run on client
@@ -68,12 +72,12 @@ export default function HeroSection() {
     };
   }, [carouselProducts, t]);
 
-  const goRight = () => {
-    setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
-    setPaused(true);
-    // Pause auto-advance for 5 seconds after manual click
-    setTimeout(() => setPaused(false), 5000);
-  };
+  // const goRight = () => {
+  //   setCarouselIdx((prev) => (prev + 1) % carouselProducts.length);
+  //   setPaused(true);
+  //   // Pause auto-advance for 5 seconds after manual click
+  //   setTimeout(() => setPaused(false), 5000);
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -227,18 +231,15 @@ export default function HeroSection() {
         </>
       )}
       <Nav cartCount={cart.length} onCartClick={() => setCartOpen(true)} />
-      <section className="relative w-full min-h-screen bg-black pt-16 sm:pt-20">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src={bgVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-
+      <section 
+        className="relative w-full min-h-screen bg-black pt-16 sm:pt-20"
+        style={{
+          backgroundImage: `url(${bgImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
         <div className="relative z-10 flex flex-col justify-center min-h-screen px-4 sm:px-8 md:px-16 lg:px-24 py-12 sm:py-24">
           <div className="absolute inset-0 bg-black/60 z-[-1]" />
 
@@ -307,10 +308,10 @@ export default function HeroSection() {
       {/* Carousel Section */}
       <section
         className="py-10 px-2 sm:px-6 md:px-12 lg:px-24 bg-gray-50"
-        onClick={() => {
-          setPaused(true);
-          goRight();
-        }}
+        // onClick={() => {
+        //   setPaused(true);
+        //   goRight();
+        // }}
         style={{ cursor: 'pointer' }}
       >
         <div className="max-w-7xl mx-auto">
@@ -369,8 +370,7 @@ export default function HeroSection() {
               {/* AnimatePresence is removed as per the edit hint, but the component is still used. */}
                 <motion.div
                   key={carouselProducts[carouselIdx].id + '-card'}
-                  className="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-xs sm:max-w-sm md:max-w-md w-full min-w-[320px] cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-                  style={window.innerWidth < 640 ? {} : { minHeight: 420, height: 420 }}
+                  className="bg-white rounded-2xl shadow-xl p-6 max-w-sm w-full cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                   whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.12)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={e => {
@@ -382,24 +382,23 @@ export default function HeroSection() {
                   exit={{ opacity: 0, scale: 0.95, y: -30 }}
                   transition={{ duration: 0.7, ease: 'easeOut' }}
                 >
-                  <div className="w-full aspect-square rounded-xl mb-4 overflow-hidden min-h-[220px] max-h-[220px] flex items-center justify-center">
+                  <div className="w-full aspect-square rounded-xl mb-4 overflow-hidden flex items-center justify-center bg-gray-50">
                     <img
                       src={carouselProducts[carouselIdx].images[0]}
                       alt={carouselProducts[carouselIdx].name}
-                      className="w-full h-full object-contain"
-                      style={{ maxWidth: '220px', maxHeight: '220px' }}
+                      className="w-full h-full object-contain p-4"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{carouselProducts[carouselIdx].name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{carouselProducts[carouselIdx].name}</h3>
                   <div
-                    className="text-gray-600 mb-4 w-full"
+                    className="text-gray-600 mb-4 w-full text-sm leading-relaxed"
                     style={descMaxHeight ? { minHeight: descMaxHeight, maxHeight: descMaxHeight, overflow: 'hidden' } : {}}
                   >
                     {t('product_desc', { context: carouselProducts[carouselIdx].id })}
                   </div>
-                {priceBlock}
+                  {priceBlock}
                   <button
-                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200"
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 rounded-lg transition-colors duration-200 mb-2"
                     onClick={(e) => {
                       e.stopPropagation();
                       addToCart(carouselProducts[carouselIdx]);
@@ -407,7 +406,7 @@ export default function HeroSection() {
                   >
                     Add to Cart
                   </button>
-                  <div className="text-center text-sm text-gray-500 mt-2">
+                  <div className="text-center text-xs text-gray-500">
                     {t('free_shipping')}
                   </div>
                 </motion.div>
@@ -415,9 +414,6 @@ export default function HeroSection() {
           </div>
         </div>
       </section>
-
-      {/* Before/After Slider Section */}
-      <BeforeAfterSlider before={beforeImg} after={afterImg} />
 
       {/* Product Cards Section - Stylists, Rosemary Oil, Last Product */}
       <section className="py-12 px-2 sm:px-6 md:px-12 lg:px-24 bg-white">
@@ -441,6 +437,84 @@ export default function HeroSection() {
               </Link>
             ))}
               </div>
+        </div>
+      </section>
+
+      {/* Before/After Slider Section */}
+      <BeforeAfterSlider before={beforeImg} after={afterImg} />
+
+      {/* Customer Testimonials Section */}
+      <section className="py-16 px-4 sm:px-8 md:px-16 lg:px-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t('testimonials_title')}</h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">{t('testimonials_subtitle')}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Testimonial 1 */}
+            <motion.div 
+              className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <img src={ba1} alt={t('customer1_name')} className="w-64 h-64 rounded-xl object-cover mb-6 shadow-lg" />
+              <p className="text-gray-700 mb-6 leading-relaxed italic text-lg">"{t('customer1_testimonial')}"</p>
+              <div>
+                <p className="text-gray-900 font-semibold text-xl">{t('customer1_name')}</p>
+                <p className="text-orange-600 text-base">{t('customer1_title')}</p>
+              </div>
+            </motion.div>
+            
+            {/* Testimonial 2 */}
+            <motion.div 
+              className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+            >
+              <img src={ba2} alt={t('customer2_name')} className="w-64 h-64 rounded-xl object-cover mb-6 shadow-lg" />
+              <p className="text-gray-700 mb-6 leading-relaxed italic text-lg">"{t('customer2_testimonial')}"</p>
+              <div>
+                <p className="text-gray-900 font-semibold text-xl">{t('customer2_name')}</p>
+                <p className="text-orange-600 text-base">{t('customer2_title')}</p>
+              </div>
+            </motion.div>
+            
+            {/* Testimonial 3 */}
+            <motion.div 
+              className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+            >
+              <img src={ba3} alt={t('customer3_name')} className="w-64 h-64 rounded-xl object-cover mb-6 shadow-lg" />
+              <p className="text-gray-700 mb-6 leading-relaxed italic text-lg">"{t('customer3_testimonial')}"</p>
+              <div>
+                <p className="text-gray-900 font-semibold text-xl">{t('customer3_name')}</p>
+                <p className="text-orange-600 text-base">{t('customer3_title')}</p>
+              </div>
+            </motion.div>
+            
+            {/* Testimonial 4 */}
+            <motion.div 
+              className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+            >
+              <img src={ba4} alt={t('customer4_name')} className="w-64 h-64 rounded-xl object-cover mb-6 shadow-lg" />
+              <p className="text-gray-700 mb-6 leading-relaxed italic text-lg">"{t('customer4_testimonial')}"</p>
+              <div>
+                <p className="text-gray-900 font-semibold text-xl">{t('customer4_name')}</p>
+                <p className="text-orange-600 text-base">{t('customer4_title')}</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
