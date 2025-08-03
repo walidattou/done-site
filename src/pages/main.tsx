@@ -31,7 +31,6 @@ export default function HeroSection() {
   const { t } = useTranslation();
   const location = useLocation();
   const [carouselIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [cart, setCart] = useState<string[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const carouselProducts = products;
