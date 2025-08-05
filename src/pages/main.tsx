@@ -13,7 +13,7 @@ import mark4 from "../assets/mark4.avif";
 import { products } from "../data/products";
 import Nav from "../components/navbar";
 import { Link } from "react-router-dom";
-import shopim1 from '../assets/shopim1.webp';
+import shopim2 from '../assets/shopim2.webp';
 import rosemaryOil from '../assets/product2/p1m1.jpg';
 import brosseIon from '../assets/product3/p3im1.jpg';
 import beforeImg from '../assets/Before.png';
@@ -152,14 +152,14 @@ export default function HeroSection() {
   }
 
   const featuredProducts = [
-    {
-      nameKey: 'main_airstyler',
-      image: shopim1,
-      oldPriceKey: 'main_airstyler_oldprice',
-      priceKey: 'main_airstyler_price',
-      tagKey: 'main_special_offer',
-      orderPath: '/order/perlebrush',
-    },
+         {
+       nameKey: 'main_airstyler',
+       image: shopim2,
+       oldPriceKey: 'main_airstyler_oldprice',
+       priceKey: 'main_airstyler_price',
+       tagKey: 'main_special_offer',
+       orderPath: '/order/perlebrush',
+     },
     {
       nameKey: 'main_rosemary',
       image: rosemaryOil,
@@ -279,6 +279,91 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </section>
+
+             {/* Modern Moving Strip */}
+       <section className="bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 overflow-hidden relative">
+         <div className="absolute inset-0 bg-black/5"></div>
+         <div className="relative">
+           <div className="flex animate-scroll whitespace-nowrap py-4 sm:py-6">
+             {/* First set */}
+             <span className="text-white font-bold text-base sm:text-xl tracking-wide px-4 sm:px-8">
+               <span className="inline-flex items-center bg-red-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-red-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">EN RUPTURE DE STOCK</span>
+               </span>
+               <span className="inline-flex items-center bg-green-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-green-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">GARANTIE 2 ANS</span>
+               </span>
+               <span className="inline-flex items-center bg-blue-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">40K CLIENTS SATISFAITS</span>
+               </span>
+               <span className="inline-flex items-center bg-yellow-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-yellow-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">PROMOTION</span>
+               </span>
+             </span>
+             {/* Second set for seamless loop */}
+             <span className="text-white font-bold text-base sm:text-xl tracking-wide px-4 sm:px-8">
+               <span className="inline-flex items-center bg-red-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-red-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">EN RUPTURE DE STOCK</span>
+               </span>
+               <span className="inline-flex items-center bg-green-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-green-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">GARANTIE 2 ANS</span>
+               </span>
+               <span className="inline-flex items-center bg-blue-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">40K CLIENTS SATISFAITS</span>
+               </span>
+               <span className="inline-flex items-center bg-yellow-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-yellow-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">PROMOTION</span>
+               </span>
+             </span>
+             {/* Third set for extra smoothness */}
+             <span className="text-white font-bold text-base sm:text-xl tracking-wide px-4 sm:px-8">
+               <span className="inline-flex items-center bg-red-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-red-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">EN RUPTURE DE STOCK</span>
+               </span>
+               <span className="inline-flex items-center bg-green-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-green-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">GARANTIE 2 ANS</span>
+               </span>
+               <span className="inline-flex items-center bg-blue-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">40K CLIENTS SATISFAITS</span>
+               </span>
+               <span className="inline-flex items-center bg-yellow-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-yellow-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">PROMOTION</span>
+               </span>
+             </span>
+             {/* Fourth set for even smoother loop */}
+             <span className="text-white font-bold text-base sm:text-xl tracking-wide px-4 sm:px-8">
+               <span className="inline-flex items-center bg-red-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-red-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">EN RUPTURE DE STOCK</span>
+               </span>
+               <span className="inline-flex items-center bg-green-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-green-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">GARANTIE 2 ANS</span>
+               </span>
+               <span className="inline-flex items-center bg-blue-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">40K CLIENTS SATISFAITS</span>
+               </span>
+               <span className="inline-flex items-center bg-yellow-500/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-yellow-400/50 shadow-lg mx-2 sm:mx-4">
+                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-white rounded-full animate-pulse mr-2 sm:mr-3"></span>
+                 <span className="text-sm sm:text-base">PROMOTION</span>
+               </span>
+             </span>
+           </div>
+         </div>
+       </section>
 
       <section className="bg-white py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

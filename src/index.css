@@ -2,3 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scrolling animation for the moving strip */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .animate-scroll {
+    animation: scroll 25s linear infinite;
+  }
+}
+

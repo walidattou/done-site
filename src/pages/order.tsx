@@ -236,6 +236,300 @@ export default function OrderPage() {
           </div>
         </motion.div>
       </div>
+
+      {/* Other Products Section */}
+      <motion.div 
+        className="mt-16 pt-8 border-t border-gray-200"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+      >
+        <div className="text-center mb-12">
+          <motion.h2 
+            className="text-3xl font-bold text-gray-900 mb-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.5 }}
+          >
+            Complete Your Hair Care Routine
+          </motion.h2>
+          <motion.p 
+            className="text-gray-600 text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.0, duration: 0.5 }}
+          >
+            Discover our complete collection of premium hair care products and exclusive bundles
+          </motion.p>
+        </div>
+        
+        {/* Individual Products */}
+        <div className="mb-12">
+          <motion.h3 
+            className="text-xl font-semibold text-gray-800 mb-6 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
+          >
+            Individual Products
+          </motion.h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {products
+              .filter((p: any) => p.id !== productId)
+              .map((otherProduct: any, index: number) => (
+                <motion.div
+                  key={otherProduct.id}
+                  className="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-500 relative"
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ delay: 1.2 + index * 0.15, duration: 0.6, ease: "easeOut" }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                >
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/10 group-hover:to-orange-500/5 transition-all duration-500 rounded-2xl z-10"></div>
+                  
+                  <div className="relative h-56 overflow-hidden">
+                    <img 
+                      src={otherProduct.images[0]} 
+                      alt={otherProduct.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                      {otherProduct.discount}
+                    </div>
+                    <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+                      Best Seller
+                    </div>
+                  </div>
+                  
+                  <div className="p-6 relative z-20">
+                    <h3 className="font-bold text-gray-900 mb-3 text-lg group-hover:text-orange-600 transition-colors duration-300">
+                      {otherProduct.name}
+                    </h3>
+                    
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
+                        ))}
+                      </div>
+                      <span className="text-sm text-gray-500">(2,847 reviews)</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-gray-400 line-through text-sm">
+                        {otherProduct.id === 'perlebrush' && '219.99$'}
+                        {otherProduct.id === 'rosemary-elixir' && '44.99$'}
+                        {otherProduct.id === 'heat-protection-spray' && '39.99$'}
+                      </span>
+                      <span className="text-2xl font-bold text-orange-600">
+                        {otherProduct.id === 'perlebrush' && '119.99$ CAD'}
+                        {otherProduct.id === 'rosemary-elixir' && '34.99$'}
+                        {otherProduct.id === 'heat-protection-spray' && '29.99$'}
+                      </span>
+                    </div>
+                    
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-2 leading-relaxed">
+                      {Array.isArray(otherProduct.description) 
+                        ? otherProduct.description[0] 
+                        : otherProduct.description}
+                    </p>
+                    
+                    <motion.button 
+                      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => window.location.href = `/order/${otherProduct.id}`}
+                    >
+                      View Product
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+          </div>
+        </div>
+
+        {/* Product Packs */}
+        <div>
+          <motion.h3 
+            className="text-xl font-semibold text-gray-800 mb-6 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.5 }}
+          >
+            Exclusive Bundles
+          </motion.h3>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Pack Essentiel */}
+            <motion.div
+              className="group bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg border border-blue-100 overflow-hidden hover:shadow-2xl transition-all duration-500 relative"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.5, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img 
+                  src="/src/assets/combined_photos/styler+protector.png"
+                  alt="Pack Essentiel"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  -7%
+                </div>
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+                  Most Popular
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="font-bold text-gray-900 mb-3 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                  Pack « Essentiel »
+                </h3>
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-500">(2,847 reviews)</span>
+                </div>
+                
+                                 <div className="flex items-center gap-3 mb-4">
+                   <span className="text-gray-400 line-through text-sm">149.99$ CAD</span>
+                   <span className="text-2xl font-bold text-blue-600">139.99$ CAD</span>
+                 </div>
+                
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  The perfect starter set for daily styling and protection. 1 Styler 5 en 1 + 1 Spray protecteur
+                </p>
+                
+                <motion.button 
+                  className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = '/order-pack-essentiel'}
+                >
+                  View Pack
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Pack Soin Complet */}
+            <motion.div
+              className="group bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg border border-green-100 overflow-hidden hover:shadow-2xl transition-all duration-500 relative"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.6, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img 
+                  src="/src/assets/combined_photos/styler+oil.png"
+                  alt="Pack Soin Complet"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  -3%
+                </div>
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+                  Best Value
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="font-bold text-gray-900 mb-3 text-lg group-hover:text-green-600 transition-colors duration-300">
+                  Pack « Soin Complet »
+                </h3>
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-500">(2,847 reviews)</span>
+                </div>
+                
+                                 <div className="flex items-center gap-3 mb-4">
+                   <span className="text-gray-400 line-through text-sm">154.99$ CAD</span>
+                   <span className="text-2xl font-bold text-green-600">149.99$ CAD</span>
+                 </div>
+                
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  A complete care solution for your hair routine. 1 Styler 5 en 1 + 1 Élixir
+                </p>
+                
+                <motion.button 
+                  className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = '/order-pack-soin-complet'}
+                >
+                  View Pack
+                </motion.button>
+              </div>
+            </motion.div>
+
+            {/* Pack Premium Total */}
+            <motion.div
+              className="group bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl shadow-lg border border-purple-100 overflow-hidden hover:shadow-2xl transition-all duration-500 relative"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: 1.7, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img 
+                  src="/src/assets/combined_photos/all3products.png"
+                  alt="Pack Premium Total"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute top-3 right-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                  -8%
+                </div>
+                <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-gray-800 text-xs font-medium px-2 py-1 rounded-full">
+                  Ultimate Bundle
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="font-bold text-gray-900 mb-3 text-lg group-hover:text-purple-600 transition-colors duration-300">
+                  Pack « Premium Total »
+                </h3>
+                
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-500">(2,847 reviews)</span>
+                </div>
+                
+                                 <div className="flex items-center gap-3 mb-4">
+                   <span className="text-gray-400 line-through text-sm">184.99$ CAD</span>
+                   <span className="text-2xl font-bold text-purple-600">169.99$ CAD</span>
+                 </div>
+                
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  The ultimate bundle for complete hair care and styling. 1 Styler 5 en 1 + 1 Spray + 1 Élixir
+                </p>
+                
+                <motion.button 
+                  className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => window.location.href = '/order-pack-premium-total'}
+                >
+                  View Pack
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }
