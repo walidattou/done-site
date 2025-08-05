@@ -11,17 +11,21 @@ import {
   Flame as Fire,
 } from "lucide-react";
 
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../data/products";
 import video1 from '../assets/videos/1sr.mp4';
 import video2 from '../assets/videos/2nd.mp4';
 import video3 from '../assets/videos/3rd.mp4';
+import stylerProtector from '../assets/combined_photos/styler+protector.png';
+import stylerOil from '../assets/combined_photos/styler+oil.png';
+import all3products from '../assets/combined_photos/all3products.png';
 import { AnimatePresence } from 'framer-motion';
 import './order.css';
 
 export default function OrderPage() {
   const { productId } = useParams();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
   const [videoIdx, setVideoIdx] = useState(0);
@@ -339,7 +343,7 @@ export default function OrderPage() {
                       className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => window.location.href = `/order/${otherProduct.id}`}
+                      onClick={() => navigate(`/order/${otherProduct.id}`)}
                     >
                       View Product
                     </motion.button>
@@ -370,7 +374,7 @@ export default function OrderPage() {
             >
               <div className="relative h-56 overflow-hidden">
                 <img 
-                  src="/src/assets/combined_photos/styler+protector.png"
+                  src={stylerProtector}
                   alt="Pack Essentiel"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -409,7 +413,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => window.location.href = '/order-pack-essentiel'}
+                  onClick={() => navigate('/order-pack-essentiel')}
                 >
                   View Pack
                 </motion.button>
@@ -426,7 +430,7 @@ export default function OrderPage() {
             >
               <div className="relative h-56 overflow-hidden">
                 <img 
-                  src="/src/assets/combined_photos/styler+oil.png"
+                  src={stylerOil}
                   alt="Pack Soin Complet"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -465,7 +469,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => window.location.href = '/order-pack-soin-complet'}
+                  onClick={() => navigate('/order-pack-soin-complet')}
                 >
                   View Pack
                 </motion.button>
@@ -482,7 +486,7 @@ export default function OrderPage() {
             >
               <div className="relative h-56 overflow-hidden">
                 <img 
-                  src="/src/assets/combined_photos/all3products.png"
+                  src={all3products}
                   alt="Pack Premium Total"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -521,7 +525,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => window.location.href = '/order-pack-premium-total'}
+                  onClick={() => navigate('/order-pack-premium-total')}
                 >
                   View Pack
                 </motion.button>
