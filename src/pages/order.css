@@ -1,9 +1,21 @@
-.video-mobile-carousel { display: flex; }
-.video-desktop-carousel { display: none; }
+.video-mobile-carousel { display: none; }
+.video-desktop-carousel { display: flex; }
 
-@media (min-width: 550px) {
-  .video-mobile-carousel { display: none !important; }
-  .video-desktop-carousel { display: flex !important; }
+/* Show 3 videos on all screen sizes */
+@media (max-width: 549px) {
+  .video-desktop-carousel {
+    flex-direction: row;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  
+  .video-desktop-carousel .w-full {
+    min-width: 120px;
+    max-width: 120px;
+    height: 200px;
+    flex-shrink: 0;
+  }
 } 
 
 /* Prevent layout shifts during image transitions */

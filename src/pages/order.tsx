@@ -13,9 +13,9 @@ import {
 
 import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../data/products";
-import video1 from '../assets/videos/1sr.mp4';
-import video2 from '../assets/videos/2nd.mp4';
-import video3 from '../assets/videos/3rd.mp4';
+const video1 = '/vids/2 Cd 4801 F 642 D 43 B 6 Be 9 D 98 Dbf 4 A 20 E 64 HD 1080 P 2 5 Mbps 46516689.mp4';
+const video2 = '/vids/54 Bb 365 C 3 D 7 A 46 Cdb 109 Daa 1 F 6 E 99316 HD 720 P 1 6 Mbps 46516690.mp4';
+const video3 = '/vids/Aa 075500 F 6 C 846 C 3835 D 9 Bcc 8 D 972 B 48 HD 1080 P 2 5 Mbps 46516692.mp4';
 import stylerProtector from '../assets/combined_photos/styler+protector.png';
 import stylerOil from '../assets/combined_photos/styler+oil.png';
 import all3products from '../assets/combined_photos/all3products.png';
@@ -413,7 +413,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate('/order-pack-essentiel')}
+                  onClick={() => navigate('/order/pack-essentiel')}
                 >
                   View Pack
                 </motion.button>
@@ -469,7 +469,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate('/order-pack-soin-complet')}
+                  onClick={() => navigate('/order/pack-soin-complet')}
                 >
                   View Pack
                 </motion.button>
@@ -525,7 +525,7 @@ export default function OrderPage() {
                   className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate('/order-pack-premium-total')}
+                  onClick={() => navigate('/order/pack-premium-total')}
                 >
                   View Pack
                 </motion.button>

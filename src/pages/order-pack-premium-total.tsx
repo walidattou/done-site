@@ -7,9 +7,9 @@ import mastercard from '../assets/important svg/mastercard-svgrepo-com.svg';
 import paypal from '../assets/important svg/paypal-svgrepo-com.svg';
 import applepay from '../assets/important svg/applepay-svgrepo-com.svg';
 import amex from '../assets/important svg/american-express-svgrepo-com.svg';
-import video1 from '../assets/videos/1sr.mp4';
-import video2 from '../assets/videos/2nd.mp4';
-import video3 from '../assets/videos/3rd.mp4';
+const video1 = '/vids/2 Cd 4801 F 642 D 43 B 6 Be 9 D 98 Dbf 4 A 20 E 64 HD 1080 P 2 5 Mbps 46516689.mp4';
+const video2 = '/vids/54 Bb 365 C 3 D 7 A 46 Cdb 109 Daa 1 F 6 E 99316 HD 720 P 1 6 Mbps 46516690.mp4';
+const video3 = '/vids/Aa 075500 F 6 C 846 C 3835 D 9 Bcc 8 D 972 B 48 HD 1080 P 2 5 Mbps 46516692.mp4';
 import './order.css';
 
 const paymentMethods = [
