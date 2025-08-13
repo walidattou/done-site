@@ -99,9 +99,9 @@ export default function Header({ cartCount = 0, onCartClick }: HeaderProps) {
           </div>
 
           {/* Center Logo - always visible, shrinks on mobile */}
-          <div className="flex-1 flex justify-center hidden sm:block">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-light tracking-wide text-gray-900 font-serif truncate">
-              PerleBrush
+          <div className="flex-1 flex justify-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light tracking-wide text-gray-900 font-serif truncate">
+              Lissage Prestige
             </h1>
           </div>
 

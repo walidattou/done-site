@@ -231,7 +231,7 @@ export default function HeroSection() {
       )}
       <Nav cartCount={cart.length} onCartClick={() => setCartOpen(true)} />
       <section 
-        className="relative w-full min-h-screen bg-black pt-16 sm:pt-20"
+        className="relative w-full min-h-[60vh] sm:min-h-screen bg-black pt-16 sm:pt-20"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: 'cover',
@@ -239,37 +239,37 @@ export default function HeroSection() {
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="relative z-10 flex flex-col justify-center min-h-screen px-4 sm:px-8 md:px-16 lg:px-24 py-12 sm:py-24">
-          <div className="absolute inset-0 bg-black/60 z-[-1]" />
+        <div className="absolute inset-0 bg-black/60 z-10" />
+        <div className="relative z-20 flex flex-col justify-center min-h-[50vh] sm:min-h-[70vh] md:min-h-screen px-4 sm:px-8 md:px-16 lg:px-24 py-6 sm:py-8 md:py-16">
 
           <motion.div
-            className="max-w-2xl"
+            className="max-w-xl"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 drop-shadow-lg">
+            <h1 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-3 sm:mb-4 drop-shadow-lg">
               <Trans
                 i18nKey="hero_title"
                 components={[<span className="italic" />, <br />, <span className="italic" />]}
               />
             </h1>
 
-            <div className="flex items-center mb-4">
-              <div className="flex text-green-400 text-lg mr-2">
+            <div className="flex items-center mb-2 sm:mb-3">
+              <div className="flex text-green-400 text-sm sm:text-base mr-2">
                 <span>★★★★★</span>
               </div>
-              <span className="text-white text-sm underline">
+              <span className="text-white text-xs underline">
                 {t("hero_reviews")}
               </span>
             </div>
 
-            <p className="text-white text-lg md:text-xl mb-8 leading-relaxed">
+            <p className="text-white text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed">
               {t("hero_desc")}
             </p>
 
             <motion.button
-              className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+              className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => { window.scrollTo(0, 0); navigate(`/order/${products[0].id}`); }}

@@ -34,7 +34,7 @@ import P3IM from '../assets/product3/P3IM.webp';
 export const products = [
   {
     id: 'perlebrush',
-    name: 'PerleBrush Styler',
+    name: 'Lissage Prestige Styler',
     images: [shopim2, shopim3, shopim4,shopim5,shopim6,shopim7],
     videos: [bgvid, bgvid, bgvid],
     posters: [mark1, mark2, mark3],
