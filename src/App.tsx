@@ -14,6 +14,7 @@ import BlogHeatFreePage from "./pages/blog-heatfree";
 import OurPacks from "./pages/ourpacks";
 import { Toaster } from "react-hot-toast";
 import { products } from "./data/products";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 
 function ScrollToTop() {
@@ -31,11 +32,13 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/order/:productId" element={<Order />} />
+        <Route path="/order/:productId" element={<ErrorBoundary><Order /></ErrorBoundary>} />
         <Route path="/order" element={<Navigate to={`/order/${products[0].id}`} replace />} />
-        <Route path="/order/pack-essentiel" element={<OrderPackEssentiel />} />
-        <Route path="/order/pack-soin-complet" element={<OrderPackSoinComplet />} />
-        <Route path="/order/pack-premium-total" element={<OrderPackPremiumTotal />} />
+        <Route path="/order/*" element={<Navigate to={`/order/${products[0].id}`} replace />} />
+        <Route path="/test-route" element={<div className="pt-24 text-center">Test route working!</div>} />
+        <Route path="/order/pack-essentiel" element={<ErrorBoundary><OrderPackEssentiel /></ErrorBoundary>} />
+        <Route path="/order/pack-soin-complet" element={<ErrorBoundary><OrderPackSoinComplet /></ErrorBoundary>} />
+        <Route path="/order/pack-premium-total" element={<ErrorBoundary><OrderPackPremiumTotal /></ErrorBoundary>} />
         <Route path="/haircare" element={<HairCare />} />
         <Route path="/blog" element={<Blog />} /> 
         <Route path="/blog-heatfree" element={<BlogHeatFreePage />} /> {/* NEW: Heat-Free Styling Blog Page */}

@@ -31,8 +31,31 @@ export default function OrderPage() {
   const [videoIdx, setVideoIdx] = useState(0);
   const videos = [video1, video2, video3];
 
-  const product = products.find((p: any) => p.id === productId) || products[0]; // fallback to first product
-  if (!product) return <div className="p-8 text-center text-xl">Product not found.</div>;
+  // Debug logging
+  console.log('OrderPage rendered with productId:', productId);
+  console.log('Available products:', products.map(p => p.id));
+
+  // Enhanced error handling for product lookup
+  const product = products.find((p: any) => p.id === productId);
+  
+  // If product not found, redirect to first product or show error
+  if (!product) {
+    console.warn(`Product with ID "${productId}" not found. Available products:`, products.map(p => p.id));
+    return (
+      <div className="min-h-screen bg-white px-4 py-8 sm:px-6 lg:px-8 pt-24 sm:pt-28">
+        <div className="max-w-7xl mx-auto text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h1>
+          <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
+          <button 
+            onClick={() => navigate('/order/perlebrush')}
+            className="bg-orange-600 hover:bg-orange-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+          >
+            Go to Lissage Prestige Styler
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
