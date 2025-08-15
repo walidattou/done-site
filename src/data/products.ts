@@ -67,7 +67,7 @@ export const products = [
     posters: [mark1, mark2, mark3],
     price: '€XX.XX',
     oldPrice: '€YY.YY',
-    discount: '-ZZ%',
+    discount: '-23%',
     description: [
       'Stronger, Healthier, Shinier Hair — Naturally',
       'Formulated with rosemary, peppermint, jojoba, and argan oils, this nutrient-rich elixir deeply nourishes the scalp and helps repair dry, damaged hair from root to tip.',
