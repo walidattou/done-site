@@ -12,6 +12,9 @@ import OrderPackSoinComplet from './pages/order-pack-soin-complet';
 import OrderPackPremiumTotal from './pages/order-pack-premium-total';
 import BlogHeatFreePage from "./pages/blog-heatfree";
 import OurPacks from "./pages/ourpacks";
+import AdminLogin from "./pages/admin-login";
+import AdminDashboard from "./pages/admin-dashboard";
+import TestOrder from "./pages/test-order";
 import { Toaster } from "react-hot-toast";
 import { products } from "./data/products";
 import ErrorBoundary from "./components/ErrorBoundary";
@@ -25,11 +28,16 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  
+  // Check if current route is an admin route
+  const isAdminRoute = location.pathname.startsWith('/admin') || location.pathname === '/test-order';
+  
   return (
-    <Router>
+    <>
       <ScrollToTop />
-      <Nav />
+      {!isAdminRoute && <Nav />}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/order/:productId" element={<ErrorBoundary><Order /></ErrorBoundary>} />
@@ -44,10 +52,21 @@ function App() {
         <Route path="/blog-heatfree" element={<BlogHeatFreePage />} /> {/* NEW: Heat-Free Styling Blog Page */}
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/ourpacks" element={<OurPacks />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/test-order" element={<TestOrder />} />
         <Route path="*" element={<Main />} />
       </Routes>
-      <Footer />
+      {!isAdminRoute && <Footer />}
       <Toaster position="top-center" toastOptions={{ duration: 4000 }} />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
