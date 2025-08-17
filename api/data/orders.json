@@ -1,0 +1,199 @@
+[
+  {
+    "id": "1755261309882",
+    "orderId": "ORD-1755261309882-V7VSO",
+    "customerName": "John Doe",
+    "customerEmail": "john.doe@example.com",
+    "customerAddress": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zipCode": "10001",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Lissage Prestige Styler",
+        "qty": 1,
+        "price": 49.99,
+        "productId": "perlebrush"
+      }
+    ],
+    "totalAmount": 49.99,
+    "orderDate": "2025-08-15T12:35:09.882Z",
+    "status": "Pending",
+    "isNew": true,
+    "notes": "Customer requested express shipping",
+    "createdAt": "2025-08-15T12:35:09.882Z",
+    "updatedAt": "2025-08-15T12:35:09.882Z"
+  },
+  {
+    "id": "1755261309883",
+    "orderId": "ORD-1755261309882-17O41",
+    "customerName": "Jane Smith",
+    "customerEmail": "jane.smith@example.com",
+    "customerAddress": {
+      "street": "456 Oak Ave",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipCode": "90210",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Rosemary Hair Elixir",
+        "qty": 2,
+        "price": 29.99,
+        "productId": "rosemary-elixir"
+      },
+      {
+        "name": "Hair Heat Protection Spray",
+        "qty": 1,
+        "price": 29.99,
+        "productId": "heat-protection-spray"
+      }
+    ],
+    "totalAmount": 89.97,
+    "orderDate": "2025-08-15T12:35:09.882Z",
+    "status": "Confirmed",
+    "isNew": false,
+    "notes": "Customer is a returning buyer",
+    "createdAt": "2025-08-15T12:35:09.882Z",
+    "updatedAt": "2025-08-15T12:35:09.882Z"
+  },
+  {
+    "id": "1755261309884",
+    "orderId": "ORD-1755261309882-KIKI8",
+    "customerName": "Mike Johnson",
+    "customerEmail": "mike.johnson@example.com",
+    "customerAddress": {
+      "street": "789 Pine Rd",
+      "city": "Chicago",
+      "state": "IL",
+      "zipCode": "60601",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Lissage Prestige Styler",
+        "qty": 1,
+        "price": 49.99,
+        "productId": "perlebrush"
+      },
+      {
+        "name": "Rosemary Hair Elixir",
+        "qty": 1,
+        "price": 29.99,
+        "productId": "rosemary-elixir"
+      }
+    ],
+    "totalAmount": 79.98,
+    "orderDate": "2025-08-15T12:35:09.882Z",
+    "status": "Shipped",
+    "isNew": false,
+    "notes": "Shipped via FedEx tracking: 123456789",
+    "createdAt": "2025-08-15T12:35:09.882Z",
+    "updatedAt": "2025-08-15T12:35:09.882Z"
+  },
+  {
+    "id": "1755261309885",
+    "orderId": "ORD-1755261309882-H7PHM",
+    "customerName": "Sarah Wilson",
+    "customerEmail": "sarah.wilson@example.com",
+    "customerAddress": {
+      "street": "321 Elm St",
+      "city": "Miami",
+      "state": "FL",
+      "zipCode": "33101",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Hair Heat Protection Spray",
+        "qty": 3,
+        "price": 29.99,
+        "productId": "heat-protection-spray"
+      }
+    ],
+    "totalAmount": 89.97,
+    "orderDate": "2025-08-15T12:35:09.882Z",
+    "status": "Cancelled",
+    "isNew": false,
+    "notes": "Customer requested cancellation due to shipping delay",
+    "createdAt": "2025-08-15T12:35:09.882Z",
+    "updatedAt": "2025-08-15T12:35:09.882Z"
+  },
+  {
+    "id": "1755261309886",
+    "orderId": "ORD-1755261309882-UU3DH",
+    "customerName": "David Brown",
+    "customerEmail": "david.brown@example.com",
+    "customerAddress": {
+      "street": "654 Maple Dr",
+      "city": "Seattle",
+      "state": "WA",
+      "zipCode": "98101",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Lissage Prestige Styler",
+        "qty": 1,
+        "price": 49.99,
+        "productId": "perlebrush"
+      },
+      {
+        "name": "Hair Heat Protection Spray",
+        "qty": 1,
+        "price": 29.99,
+        "productId": "heat-protection-spray"
+      },
+      {
+        "name": "Rosemary Hair Elixir",
+        "qty": 1,
+        "price": 29.99,
+        "productId": "rosemary-elixir"
+      }
+    ],
+    "totalAmount": 109.97,
+    "orderDate": "2025-08-15T12:35:09.882Z",
+    "status": "Pending",
+    "isNew": true,
+    "notes": "New customer, first order",
+    "createdAt": "2025-08-15T12:35:09.882Z",
+    "updatedAt": "2025-08-15T12:35:09.882Z"
+  },
+  {
+    "orderId": "ORD-1755261564147-1D0KT",
+    "customerName": "Test Customer",
+    "customerEmail": "test@example.com",
+    "customerAddress": {
+      "street": "123 Test Street",
+      "city": "Test City",
+      "state": "TS",
+      "zipCode": "12345",
+      "country": "USA"
+    },
+    "items": [
+      {
+        "name": "Lissage Prestige Styler",
+        "qty": 1,
+        "price": 49.99,
+        "productId": "perlebrush"
+      },
+      {
+        "name": "Rosemary Hair Elixir",
+        "qty": 2,
+        "price": 29.99,
+        "productId": "rosemary-elixir"
+      }
+    ],
+    "totalAmount": 109.97,
+    "orderDate": "2025-08-15T12:39:24.147Z",
+    "status": "Pending",
+    "isNew": true,
+    "notes": "Test order from frontend integration",
+    "createdAt": "2025-08-15T12:39:24.147Z",
+    "updatedAt": "2025-08-15T12:39:24.149Z"
+  }
+]
