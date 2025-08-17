@@ -12,8 +12,10 @@ const orderRoutes = require('./routes/orders');
 
 const app = express();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB (only in non-serverless environments)
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  connectDB();
+}
 
 // Security middleware
 app.use(helmet());
@@ -41,10 +43,20 @@ const corsOptions = {
       'http://localhost:5174',
       'http://localhost:3001',
       'http://localhost:8080',
-      'https://*.vercel.app'
+      'https://*.vercel.app',
+      'https://*.vercel.app/*'
     ];
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    // Check if origin matches any allowed pattern
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (allowed.includes('*')) {
+        const pattern = allowed.replace('*', '.*');
+        return new RegExp(pattern).test(origin);
+      }
+      return allowed === origin;
+    });
+    
+    if (isAllowed) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -105,18 +117,25 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
-
-// Handle unhandled promise rejections
-process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`);
-  // Close server & exit process
-  process.exit(1);
-});
-
-module.exports = app;
+// For Vercel serverless functions
+if (process.env.VERCEL) {
+  // Export for Vercel serverless
+  module.exports = app;
+} else {
+  // For local development
+  const PORT = process.env.PORT || 5000;
+  
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  });
+  
+  // Handle unhandled promise rejections
+  process.on('unhandledRejection', (err, promise) => {
+    console.log(`Error: ${err.message}`);
+    // Close server & exit process
+    process.exit(1);
+  });
+  
+  module.exports = app;
+}
