@@ -12,9 +12,9 @@ const AdminLogin = () => {
   const navigate = useNavigate();
 
   // API base URL - works for both development and production
-  const API_BASE = process.env.NODE_ENV === 'production' 
-    ? '/api' 
-    : 'http://localhost:5000/api';
+const API_BASE = process.env.NODE_ENV === 'production' 
+  ? '/api' 
+  : 'http://localhost:3000/api';
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -5,7 +5,7 @@ import { useState } from 'react';
 // API base URL - works for both development and production
 const API_BASE = process.env.NODE_ENV === 'production' 
   ? '/api' 
-  : 'http://localhost:5000/api';
+  : 'http://localhost:3000/api';
 
 const TestOrder = () => {
   const [orderData, setOrderData] = useState({
